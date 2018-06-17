@@ -8,7 +8,6 @@ import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { Http } from '@angular/http';
-import { ApiService } from '../../../../core/services/api.service';
 import { Department } from '../models/department';
 import { LoaderService } from '../../../../core/loader/loader.service';
 import { LoggerService } from '../../../../core/services/log4ts/logger.service';
