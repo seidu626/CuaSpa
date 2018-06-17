@@ -1,0 +1,4 @@
+D:\VSPS\Repos\Cus\src\SaasWebLite.Web.Spa\obj\Debug\netcoreapp1.1\SaasWebLite.Web.Spa.csprojAssemblyReference.cache
+D:\VSPS\Repos\Cus\src\SaasWebLite.Web.Spa\obj\Debug\netcoreapp1.1\SaasWebLite.Web.Spa.csproj.CoreCompileInputs.cache
+D:\VSPS\Repos\Cus\src\SaasWebLite.Web.Spa\obj\Debug\netcoreapp1.1\SaasWebLite.Web.Spa.AssemblyInfoInputs.cache
+D:\VSPS\Repos\Cus\src\SaasWebLite.Web.Spa\obj\Debug\netcoreapp1.1\SaasWebLite.Web.Spa.AssemblyInfo.cs

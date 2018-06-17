@@ -1,0 +1,15 @@
+<app-news-item-form *ngIf="news_item_edit" [newsItem]="newsItem" (close)="close($event)"></app-news-item-form>
+
+<app-news-media-form *ngIf="news_media_edit" [newsMedia]="newsMedia" (close)="close($event)"></app-news-media-form>
+
+<app-news-item-list *ngIf="news_item_list"
+                    [rows]="newsItemList"
+                    (add)="onAdd($event)"
+                    (edit)="onEdit($event)"
+                    (remove)="onDelete($event)"></app-news-item-list>
+
+<app-news-media-list *ngIf="news_media_list"
+                     [rows]="newsMediaList"
+                     (add)="onAdd($event)"
+                     (edit)="onEdit($event)"
+                     (remove)="onDelete($event)"></app-news-media-list>

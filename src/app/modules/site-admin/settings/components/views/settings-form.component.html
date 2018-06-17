@@ -1,0 +1,46 @@
+<div class="row align-items-center">
+  <div class="col-12 align-self-center">
+    <form [formGroup]="frmGroup" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="card">
+        <div class="card-header">
+          <strong>Setting Info</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4">
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="name">Name</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="name"><i class="fa fa-navicon"></i></span>
+                    <input type="text" id="name" formControlName="name" class="form-control" placeholder="name.." aria-describedby="name">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="form-group row">
+                <label class="col-md-2 form-control-label" for="value">Value</label>
+                <div class="col-md-10">
+                  <textarea [froalaEditor] id="value" rows="5" formControlName="value" class="form-control" placeholder="value.."></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-2 form-control-label" for="description">Description</label>
+                <div class="col-md-10">
+                  <textarea [froalaEditor] id="description" rows="5" formControlName="description" class="form-control" placeholder="description.."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" [disabled]="!frmGroup.valid" class="btn btn-default"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          <button type="button" (click)="onCancel()" class="btn btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

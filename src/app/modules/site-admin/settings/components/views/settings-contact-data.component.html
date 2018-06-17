@@ -1,0 +1,91 @@
+<div class="row align-items-center">
+  <div class="col-12 align-self-center">
+    <form [formGroup]="frmGroup" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="row">
+        <div class="col-8">
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="companyTelephoneNumber">Company Telephone Number</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="companyTelephoneNumber"><i class="fa fa-phone"></i></span>
+                <input type="text" id="companyTelephoneNumber" formControlName="companyTelephoneNumber" class="form-control" placeholder=".." aria-describedby="companyTelephoneNumber">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="twitter">Hotline Telephone Number</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="hotlineTelephoneNumber"><i class="fa fa-phone"></i></span>
+                <input type="text" id="hotlineTelephoneNumber" formControlName="hotlineTelephoneNumber" class="form-control" placeholder=".." aria-describedby="hotlineTelephoneNumber">
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="mobileTelephoneNumber">Mobile Telephone Number</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="mobileTelephoneNumber"><i class="fa fa-mobile-phone"></i></span>
+                <input type="text" id="mobileTelephoneNumber" formControlName="mobileTelephoneNumber" class="form-control" placeholder=".." aria-describedby="mobileTelephoneNumber">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="companyFaxNumber">Company Fax Number</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="companyFaxNumber"><i class="fa fa-fax"></i></span>
+                <input type="text" id="companyFaxNumber" formControlName="companyFaxNumber" class="form-control" placeholder=".." aria-describedby="companyFaxNumber">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="companyEmailAddress">Company Email Address</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="companyEmailAddress"><i class="fa fa-envelope-square"></i></span>
+                <input type="text" id="companyEmailAddress" formControlName="companyEmailAddress" class="form-control" placeholder=".." aria-describedby="companyEmailAddress">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="webmasterEmailAddress">Webmaster Email Address</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="webmasterEmailAddress"><i class="fa fa-envelope-square"></i></span>
+                <input type="text" id="webmasterEmailAddress" formControlName="webmasterEmailAddress" class="form-control" placeholder=".." aria-describedby="webmasterEmailAddress">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="supportEmailAddress">Support Email Address</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="supportEmailAddress"><i class="fa fa-envelope-square"></i></span>
+                <input type="text" id="supportEmailAddress" formControlName="supportEmailAddress" class="form-control" placeholder=".." aria-describedby="supportEmailAddress">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="contactEmailAddress">Contact Email Address</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="contactEmailAddress"><i class="fa fa-envelope-square"></i></span>
+                <input type="text" id="contactEmailAddress" formControlName="contactEmailAddress" class="form-control" placeholder=".." aria-describedby="contactEmailAddress">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

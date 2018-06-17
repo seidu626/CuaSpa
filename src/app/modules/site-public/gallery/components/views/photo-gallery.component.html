@@ -1,0 +1,56 @@
+<section class="post-wrapper-top jt-shadow clearfix">
+    <div class="container">
+      <div class="col-lg-12">
+        <h2>Photo Gallery</h2>
+        <ul class="breadcrumb pull-right">
+          <li>
+            <a [routerLink]="['/public/home']">Home </a>
+          </li>
+          <li> Gallery</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+<section class="white-wrapper">
+    <div class="container">
+        <div class="general-title">
+            <h2>Our Events &amp; Programs</h2>
+              <hr>
+          </div><!-- end general title -->
+  </div><!-- end container -->
+
+  <div class="text-center clearfix">
+    <nav class="portfolio-filter">
+              <ul>
+                  <li><a class="btn btn-primary" href="javascript:void(0)" data-filter="*"><span></span>All</a></li>
+                  <li><a class="btn btn-primary" href="javascript:void(0)" data-filter=".photography">Events</a></li>                
+              </ul>
+    </nav>
+  </div><!-- end text-center --> 
+  
+  <ng-template #loading>
+      <div class="col-4 offset-md-4">
+        Loading data...
+      </div>
+    </ng-template>
+
+  <div class="portfolio_wrapper padding-top" *ngIf="images; let reqfiles; else loading">
+   
+      <div class="my-app-custom-plain-container-with-desc">
+          <ng-container *ngFor="let img of images">
+            <figure class="my-app-custom-image-with-desc">
+              <img [src]="img.modal.img"
+                   (click)="openImageModalRowDescription(img)"/>
+              <figcaption class="description">{{img.modal.description ? img.modal.description : 'No description available'}}
+              </figcaption>
+            </figure>
+          </ng-container>
+        </div>
+        <ks-modal-gallery [id]="8" [modalImages]="images"
+                          [plainGalleryConfig]="customPlainGalleryRowDescConfig"></ks-modal-gallery>
+
+		</div><!-- portfolio_wrapper -->
+        
+		<div class="clearfix"></div>
+</section>

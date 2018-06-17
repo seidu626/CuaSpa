@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <br/>
+        <div class="row">
+          <div class="col-3">
+            <button type="button" (click)="onSubmit()" class="btn btn-block btn-primary"><i class="fa fa-dot-circle-o"></i> Save Setting</button>
+          </div>
+        </div>        
+      </div>
+      <div class="card-body">
+        <ngb-tabset type="pills">
+          <ngb-tab>
+            <ng-template ngbTabTitle>  <i class="fa fa-align-justify"></i> <b>Company Info</b></ng-template>
+            <ng-template ngbTabContent>
+              <div class="col-12">
+                <app-settings-company-info *ngIf="setting" [(setting)]="setting"></app-settings-company-info>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle>  <i class="fa fa-align-justify"></i> <b>Contact Data</b></ng-template>
+            <ng-template ngbTabContent>
+              <div class="col-8">
+                <app-settings-contact-data  *ngIf="setting" [(setting)]="setting"></app-settings-contact-data>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle>  <i class="fa fa-align-justify"></i> <b>Social Info</b></ng-template>
+            <ng-template ngbTabContent>
+              <div class="col-8">
+                <app-settings-social  *ngIf="setting" [(setting)]="setting"></app-settings-social>
+              </div>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>
+</div>
+

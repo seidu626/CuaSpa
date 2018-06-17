@@ -1,0 +1,125 @@
+<div class="row align-items-center">
+  <div class="col-12 align-self-center">
+    <form [formGroup]="frmGroup" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="row">
+        <div class="col-4">
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="companyName">Company Name</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="companyName"><i class="fa fa-building"></i></span>
+                <input type="text" id="companyName" formControlName="companyName" class="form-control" placeholder="companyName.." aria-describedby="companyName">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="address">Address</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="address"><i class="fa fa-book"></i></span>
+                <input type="text" id="address" formControlName="address" class="form-control" placeholder="address.." aria-describedby="address">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="title">Title</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="title"><i class="fa fa-black-tie"></i></span>
+                <input type="text" id="title" formControlName="title" class="form-control" placeholder="title.." aria-describedby="title">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="street">Street</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="street"><i class="fa fa-street-view"></i></span>
+                <input type="text" id="street" formControlName="street" class="form-control" placeholder="street.." aria-describedby="street">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="zipCode">ZipCode</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="zipCode"><i class="fa fa-street-view"></i></span>
+                <input type="text" id="zipCode" formControlName="zipCode" class="form-control" placeholder="zipCode.." aria-describedby="zipCode">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="city">City</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="city"><i class="fa fa-street-view"></i></span>
+                <input type="text" id="city" formControlName="zipCode" class="form-control" placeholder="city.." aria-describedby="city">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="region">Region</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="region"><i class="fa fa-street-view"></i></span>
+                <input type="text" id="region" formControlName="region" class="form-control" placeholder="region.." aria-describedby="region">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="countryName">Country</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="countryName"><i class="fa fa-street-view"></i></span>
+                <input type="text" id="countryName" formControlName="countryName" class="form-control" placeholder="countryName.." aria-describedby="countryName">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="stateName">State Name</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="stateName"><i class="fa fa-street-view"></i></span>
+                <input type="text" id="stateName" formControlName="stateName" class="form-control" placeholder="stateName.." aria-describedby="stateName">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-8">
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" for="about">About</label>
+            <div class="col-md-10">
+              <textarea [froalaEditor] id="about" rows="5" formControlName="about" class="form-control" placeholder="about.."></textarea>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" for="mission">Mission Statement</label>
+            <div class="col-md-10">
+              <textarea [froalaEditor] id="mission" rows="5" formControlName="mission" class="form-control" placeholder="mission.."></textarea>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" for="vision">Vision Statement</label>
+            <div class="col-md-10">
+              <textarea [froalaEditor] id="vision" rows="5" formControlName="vision" class="form-control" placeholder="vision.."></textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<style>
+  .card-columns {
+    @include media-breakpoint-only(lg) {
+      column-count: 4;
+    }
+
+    @include media-breakpoint-only(xl) {
+      column-count: 5;
+    }
+  }
+</style>
+<mat-toolbar color="default">
+  <mat-toolbar-row>
+    <span>Video Gallery</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon">user</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="row" style="padding-top:10px;">
+  <div class="col-md-8 col-sm-12 offset-md-2">
+    <div class="card" *ngIf="videos | async; let videosFiles; else loading">
+      <div class="card-body">
+        <vg-player (onPlayerReady)="onPlayerReady($event)">
+          <vg-buffering></vg-buffering>
+          <vg-controls>
+            <vg-play-pause></vg-play-pause>
+            <vg-playback-button></vg-playback-button>
+
+            <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+            <vg-scrub-bar>
+              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+              <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+            </vg-scrub-bar>
+
+            <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+            <vg-mute></vg-mute>
+            <vg-volume></vg-volume>
+
+            <vg-fullscreen></vg-fullscreen>
+          </vg-controls>
+
+          <video #media
+                 [vgMedia]="media"
+                 [src]="currentItem.src"
+                 id="singleVideo"
+                 preload="auto"
+                 crossorigin></video>
+        </vg-player>
+        <ul>
+          <li *ngFor="let item of videosFiles; let $index = index"
+              (click)="onClickPlaylistItem(item, $index)"
+              [class.selected]="item === currentItem">
+            {{ item.title }}
+          </li>
+        </ul>
+      </div>    
+    </div>
+    <ng-template #loading>
+      <div class="col-4 offset-md-4">
+        Loading data...
+      </div>
+    </ng-template>
+  </div>  
+</div>

@@ -1,0 +1,7 @@
+<ng-progress [speed]="200" [color]="'#fc6fb1'" [showSpinner]="false" [ease]="'easeOutQuad'" [trickleSpeed]="250"></ng-progress>
+<div class="ms-site-container">
+  <app-header [isLoggedIn]="isLoggedIn$ | async" (logoutClick)="logout()" (loginClick)="login()" [socialSettings]="socialSettings" [companySettings]="companySettings" [contactSettings]="contactSettings" [appName]="appName"></app-header>
+  <router-outlet></router-outlet>
+  <app-footer [socialSettings]="socialSettings" [companySettings]="companySettings" [contactSettings]="contactSettings" [appName]="appName"></app-footer>
+  <app-sidebar [socialSettings]="socialSettings" [appName]="appName" [isLoggedIn]="isLoggedIn$ | async" (logoutClick)="logout()"></app-sidebar>
+</div>

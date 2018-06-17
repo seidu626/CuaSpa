@@ -1,0 +1,75 @@
+<div class="row align-items-center">
+  <div class="col-12 align-self-center">
+    <form [formGroup]="frmGroup" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="card">
+        <div class="card-header">
+          <strong>Profile</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="memberTypeId">Membership Type</label>
+                <div class="col-md-9">
+                  <select formControlName="memberTypeId" class="form-control">
+                    <option *ngFor="let type of memberTypes " [ngValue]="type.id">{{type.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="facebook">Facebook Handle</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="facebook"><i class="fa fa-facebook"></i></span>
+                    <input type="text" id="facebook" formControlName="facebook" class="form-control" placeholder="facebook.." aria-describedby="facebook">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="twitter">Twitter Handle</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="twitter"><i class="fa fa-twitter"></i></span>
+                    <input type="text" id="twitter" formControlName="twitter" class="form-control" placeholder="twitter.." aria-describedby="twitter">
+                  </div>
+                  
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="linkedIn">LinkedIn Hanlde</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="linkedIn"><i class="fa fa-linkedin-square"></i></span>
+                    <input type="text" id="linkedIn" formControlName="linkedIn" class="form-control" placeholder="linkedIn.." aria-describedby="linkedIn">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="form-group row">
+                <label class="col-md-2 form-control-label" for="shortDescription">Short Description</label>
+                <div class="col-md-10">
+                  <textarea [froalaEditor] id="shortDescription" rows="5" formControlName="shortDescription" class="form-control" placeholder="shortDescription.."></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-2 form-control-label" for="description">Description</label>
+                <div class="col-md-10">
+                  <textarea [froalaEditor] id="description" rows="5" formControlName="description" class="form-control" placeholder="description.."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" [disabled]="!frmGroup.valid" class="btn btn-default"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          <button type="button" (click)="onCancel()" class="btn btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

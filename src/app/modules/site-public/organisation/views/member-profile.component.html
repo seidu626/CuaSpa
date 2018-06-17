@@ -1,0 +1,80 @@
+<section class="post-wrapper-top jt-shadow clearfix">
+  <div class="container">
+    <div class="col-lg-12">
+      <h2>Member Profile</h2>
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a [routerLink]="['/public/home']">Home</a>
+        </li>
+        <li>Organisation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="white-wrapper">
+  <div class="container">
+    <ng-template #loading>
+      <div class="col-4 offset-md-4">
+        Loading data...
+      </div>
+    </ng-template>
+
+    <div *ngIf="userProfile | async; let profile; else loading" class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 first">
+        <div class="team_member">
+          <div class="entry">
+            <img class="img-responsive" src="{{profile.picturePath}}" alt="">
+            <div class="magnifier">
+              <div class="buttons">
+                <a class="sf" rel="bookmark" href="{{profile.email}}">
+                  <span class="fa fa-envelope"></span>
+                </a>
+                <a class="sf" rel="bookmark" href="{{profile.facebook}}">
+                  <span class="fa fa-facebook"></span>
+                </a>
+                <a class="st" rel="bookmark" href="{{profile.twitter}}">
+                  <span class="fa fa-twitter"></span>
+                </a>
+                <a class="sg" rel="bookmark" href="{{profile.linkedin}}">
+                  <span class="fa fa-linkedin"></span>
+                </a>
+              </div>
+            </div>
+            <!-- end magnifier -->
+          </div>
+          <!-- end entry -->
+        </div>
+        <!-- end team_member -->
+      </div>
+      <!-- end col-lg-3 -->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="team_member">
+          <h1>{{profile.employee}}
+            <span>|</span>
+            <small>{{profile.memberType}}</small>
+          </h1>
+          <p [innerHTML]="profile.description">
+          </p>
+        </div>
+        <!-- end team_member -->
+      </div>
+      <!-- end col-lg-6 -->
+
+      <div class="clearfix"></div>
+      <div class="next_prev text-center">
+        <ul class="pager">
+          <li *ngIf="showPrev" class="previous">
+            <a (click)="nextEvent.emit({direction: 'prev' })" style="cursor: pointer;">&larr; Previous Member</a>
+          </li>
+          <li *ngIf="showNext" class="next">
+            <a (click)="nextEvent.emit({direction: 'next' })" style="cursor: pointer;">Next Member &rarr;</a>
+          </li>
+        </ul>
+      </div>
+      <!-- next_prev -->
+    </div>
+  </div>
+  <!-- end container -->
+</section>
+<!-- end white wrapper -->

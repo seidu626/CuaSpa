@@ -1,0 +1,107 @@
+<div class="row align-self-center">
+  <div class="col align-self-center">
+    <div class="col">
+      <input type='text'
+             class=""
+             style='padding:8px;margin:15px auto;width:30%;'
+             placeholder='Type to filter the name column...'
+             (keyup)='updateFilter($event)' />
+
+      <button (click)="onAdd()" class="btn btn-primary" title="Add Profile"><i class="icon icon-plus"></i></button>
+    </div>
+
+    <div class="col align-self-center">
+      <ngx-datatable #table
+                     class='material'
+                     [rows]="rows"
+                     [columns]="columns"
+                     [columnMode]="'force'"
+                     [headerHeight]="40"
+                     [footerHeight]="40"
+                     [limit]="10"
+                     [loadingIndicator]="loadingIndicator"
+                     [rowHeight]="'auto'"
+                     [reorderable]="reorderable">
+        <ngx-datatable-column name="employee">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            Employee
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="memberType">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span (click)="sort()">Member Type</span>
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="shortDescription">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span (click)="sort()">Short Description</span>
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="facebook">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span (click)="sort()">Facebook</span>
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="twitter">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span (click)="sort()">Twitter</span>
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="linkedIn">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span (click)="sort()">LinkedIn</span>
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Id" sortable="false">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button md-icon-button class="btn btn-default" (click)="onEdit(value)">
+              <i class="fa fa-cog"></i>
+            </button>
+            <button md-icon-button
+                    class="btn btn-danger"
+                    mwlConfirmationPopover
+                    [popoverTitle]="popoverTitle"
+                    [popoverMessage]="popoverMessage"
+                    [confirmText]="confirmText"
+                    [cancelText]="cancelText"
+                    [placement]="placement"
+                    (confirm)="onDelete(value)"
+                    (cancel)="cancelClicked = true"
+                    confirmButtonType="danger"
+                    cancelButtonType="default"
+                    (click)="confirmClicked = false; cancelClicked = false"
+                    [appendToBody]="true">
+              <i class="fa fa-trash-o"></i>
+            </button>
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+    </div>
+
+
+  </div>
+
+</div>

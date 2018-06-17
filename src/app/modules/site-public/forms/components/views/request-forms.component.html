@@ -1,0 +1,53 @@
+<section class="post-wrapper-top jt-shadow clearfix">
+  <div class="container">
+    <div class="col-lg-12">
+      <h2>Request Forms</h2>
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a [routerLink]="['/public/home']">Home</a>
+        </li>
+        <li> Services</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="grey-wrapper jt-shadow">
+  <div class="container">
+        <div class="general-title">
+            <h2>Our Working Process</h2>
+            <hr>
+            <p class="lead"></p>
+        </div><!-- end general title -->
+
+        <ng-template #loading>
+          <div class="col-4 offset-md-4">
+            Loading data...
+          </div>
+        </ng-template>
+
+        <div class="custom-services" *ngIf="requestForms | async; let reqfiles; else loading">
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 first" *ngFor="let $reqfile of reqfiles">
+            <div class="ch-item">
+              <div class="ch-info-wrap">
+                <div class="ch-info">
+                  <div class="ch-info-front">
+                    <i class="fa fa-files fa-4x"></i>
+                    <h3>{{$reqfile.title}}</h3>                  
+                  </div>
+                  <div class="ch-info-back">
+                    <h3>  <a href="{{$reqfile.path}}" class="btn btn-info btn-raised">Download</a></h3>
+                    <span [innerHTML]="$reqfile.shortDesc"></span>                   
+                  </div>
+                </div>
+                <!-- end ch-info -->
+              </div>
+              <!-- end ch-info-wrap -->
+            </div>
+            <!-- end ch-item -->
+          </div>
+          <!-- end col-sm-3 -->
+
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end transparent-bg -->

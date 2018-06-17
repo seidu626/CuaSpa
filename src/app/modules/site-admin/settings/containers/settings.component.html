@@ -1,0 +1,6 @@
+<app-settings-form *ngIf="edit" [setting]="setting" (close)="close($event)"></app-settings-form>
+<app-settings-list *ngIf="list"
+                   [rows]="settings"
+                   (add)="onAdd($event)"
+                   (edit)="onEdit($event)"
+                   (remove)="onDelete($event)"></app-settings-list>

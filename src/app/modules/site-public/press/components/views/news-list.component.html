@@ -1,0 +1,96 @@
+<section class="post-wrapper-top jt-shadow clearfix">
+  <div class="container">
+    <div class="col-lg-12">
+      <h2>News Article's</h2>
+      <ul class="breadcrumb pull-right">
+        <a [routerLink]="['/public/home']"> Home </a>
+        <li> Blog</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- end post-wrapper-top -->
+
+<section class="blog-wrapper">
+
+  <div class="container">
+    <div id="content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <ng-template #loading>
+        <div class="col-4 offset-md-4">
+          Loading data...
+        </div>
+      </ng-template>
+
+      <div *ngIf="rows | async; let items; else loading" class="blog-masonry">
+        <div *ngFor="let $row of items" class="col-lg-4">
+          <div class="blog-carousel">
+            <div *ngIf="$row.thumbPath; else bqoute" class="entry">
+              <img src="{{$row.thumbPath}}" alt="" class="img-responsive">
+              <div class="magnifier">
+                <div class="buttons">
+                  <a href="javascript:void(0)" (click)="viewEvent.emit({component: 'news_details', id: $row.id})" class="st" rel="bookmark">
+                    <i class="fa fa-link"></i>
+                  </a>
+                </div>
+                <!-- end buttons -->
+              </div>
+              <!-- end magnifier -->
+              <div class="post-type">
+                <i class="fa fa-picture-o"></i>
+              </div>
+              <!-- end pull-right -->
+            </div>
+            <ng-template #bqoute>
+              <div *ngIf="$row.bqoute" class="entry">
+                <div class="quote-post">
+                  <blockquote>
+                    <p class="lead">{{$row.quote}}</p>
+                    <small>
+                      <cite title="Source Title">{{$row.author}}</cite>
+                    </small>
+                  </blockquote>
+                </div>
+                <!-- end quote-post -->
+                <div class="post-type">
+                  <i class="fa fa-quote-right"></i>
+                </div>
+                <!-- end pull-right -->
+              </div>
+            </ng-template>
+            <!-- end entry -->
+            <div class="blog-carousel-header">
+              <h3>
+                <a title="" href="javascript:void(0)" (click)="viewEvent.emit({component: 'news_details', id: $row.id})">{{$row.title}}</a>
+              </h3>
+              <div class="blog-carousel-meta">
+                <span>
+                  <i class="fa fa-calendar"></i> {{$row.publishedDate | timeAgo}}</span>
+                <span>
+                  <i class="fa fa-link"></i>
+                  <a href="javascript:void(0)" (click)="viewEvent.emit({component: 'news_details', id: $row.id})" rel="bookmark">
+                    Read more...
+                  </a>
+                </span>
+              </div>
+              <!-- end blog-carousel-meta -->
+            </div>
+            <!-- end blog-carousel-header -->
+            <div class="blog-carousel-desc" [innerHTML]="$row.short"></div>
+          </div>
+          <!-- end blog-carousel-desc -->
+
+        </div>
+        <!-- end blog-carousel -->
+      </div>
+      <!-- end col-lg-4 -->
+    </div>
+    <!-- end blog-masonry -->
+
+
+    <div class="clearfix"></div>
+    <hr>
+    <!-- end content -->
+  </div>
+  <!-- end container -->
+</section>
+<!--end white-wrapper -->

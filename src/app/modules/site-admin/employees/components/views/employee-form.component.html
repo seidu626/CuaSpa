@@ -1,0 +1,144 @@
+<div class="row align-items-center">
+  <div class="col-12 align-self-center">
+    <form [formGroup]="empForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="card">
+        <div class="card-header">
+          <strong>Employee</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="surname">Username</label>
+                <div class="col-md-9">
+                  <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="surname">Surname</label>
+                <div class="col-md-9">
+                  <input type="text" id="surname" formControlName="surname" class="form-control" placeholder="Surname..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="firstname">First name</label>
+                <div class="col-md-9">
+                  <input type="text" id="firstname" formControlName="firstname" class="form-control" placeholder="firstname..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="othernames">Other names</label>
+                <div class="col-md-9">
+                  <input type="text" id="othernames" formControlName="othernames" class="form-control" placeholder="othernames..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="phone">Phone</label>
+                <div class="col-md-9">
+                  <input type="text" id="phone" formControlName="phone" class="form-control" placeholder="phone..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="firstname">Email</label>
+                <div class="col-md-9">
+                  <input type="email" id="firstname" formControlName="email" class="form-control" placeholder="email..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="categoryId">Category</label>
+                <div class="col-md-6">
+                  <select formControlName="categoryCode" class="form-control">
+                    <option *ngFor="let category of categories " [ngValue]="category.code">{{category.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="levelId">Level</label>
+                <div class="col-md-6">
+                  <select formControlName="levelCode" class="form-control">
+                    <option *ngFor="let level of levels " [ngValue]="level.code">{{level.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-6">
+
+              <div *ngIf="divisions != null" class="form-group row">
+                <label class="col-md-3 form-control-label" for="divisionId">Division</label>
+                <div class="col-md-6">
+                  <select formControlName="divisionCode" class="form-control" (change)="onChangeDivision($event)">
+                    <option *ngFor="let division of divisions " [ngValue]="division.code">{{division.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div *ngIf="departments" class="form-group row">
+                <label class="col-md-3 form-control-label" for="departmentId">Department</label>
+                <div class="col-md-6">
+                  <select formControlName="departmentCode" class="form-control" (change)="onChangeDept($event)">
+                    <option *ngFor="let dept of departments " [ngValue]="dept.code">{{dept.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div *ngIf="sections != null" class="form-group row">
+                <label class="col-md-3 form-control-label" for="sectionId">Section</label>
+                <div class="col-md-6">
+                  <select formControlName="sectionCode" class="form-control">
+                    <option *ngFor="let section of sections " [ngValue]="section.code">{{section.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div *ngIf="jobRoles != null" class="form-group row">
+                <label class="col-md-3 form-control-label" for="jobRoleId">Job Role</label>
+                <div class="col-md-6">
+                  <select formControlName="jobRoleCode" class="form-control">
+                    <option *ngFor="let jobRole of jobRoles " [ngValue]="jobRole.code">{{jobRole.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="avatar">Profile Picture</label>
+                <div class="col-md-9">
+                  <kendo-upload formControlName="avatar"
+                                [multiple]="false"
+                                [saveUrl]="uploadSaveUrl"
+                                [removeUrl]="uploadRemoveUrl"
+                                [restrictions]="uploadRestrictions"
+                                (select)="selectEventHandler($event)"
+                                (clear)="clearEventHandler($event)"
+                                (remove)="removeEventHandler($event)"
+                                (complete)="completeEventHandler($event)">
+                  </kendo-upload>
+
+                  <div *ngIf="imagePreviews.length" class="img-preview example-config">
+                    <h3>Image Preveiw</h3>
+                    <img *ngFor="let image of imagePreviews"
+                         [src]="image.src"
+                         alt="image preview"
+                         style="width: 200px; margin: 10px;" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <button type="submit" [disabled]="!empForm.valid" class="btn btn-default"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          <button type="button" (click)="onCancel()" class="btn btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

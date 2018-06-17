@@ -1,0 +1,68 @@
+<div class="row align-items-center">
+  <div class="col-12 align-self-center">
+    <form [formGroup]="frmGroup" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="row">
+        <div class="col-8">
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="showSocialLinksInFooter">Show SocialLinks In Footer</label>
+            <div class="col-md-9">
+              <input type="checkbox" id="showSocialLinksInFooter" formControlName="showSocialLinksInFooter" class="">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="facebook">Facebook Handle</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="facebook"><i class="fa fa-facebook"></i></span>
+                <input type="text" id="facebook" formControlName="facebookLink" class="form-control" placeholder=".." aria-describedby="facebook">
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="twitter">Twitter Handle</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="twitter"><i class="fa fa-twitter"></i></span>
+                <input type="text" id="twitter" formControlName="twitterLink" class="form-control" placeholder=".." aria-describedby="twitter">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="linkedIn">LinkedIn Hanlde</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="linkedIn"><i class="fa fa-linkedin-square"></i></span>
+                <input type="text" id="linkedIn" formControlName="linkedInLink" class="form-control" placeholder=".." aria-describedby="linkedIn">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="googlePlusLink">Google Plus Hanlde</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="googlePlusLink"><i class="fa fa-google-plus-square"></i></span>
+                <input type="text" id="googlePlusLink" formControlName="googlePlusLink" class="form-control" placeholder=".." aria-describedby="googlePlusLink">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="pinterestLink">Pinterest Hanlde</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <span class="input-group-addon" id="pinterestLink"><i class="fa fa-pinterest-square"></i></span>
+                <input type="text" id="pinterestLink" formControlName="pinterestLink" class="form-control" placeholder=".." aria-describedby="pinterestLink">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

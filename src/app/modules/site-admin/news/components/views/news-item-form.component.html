@@ -1,0 +1,115 @@
+<div class="row align-items-center">
+  <div class="col-12 align-self-center">
+    <form [formGroup]="frmGroup" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="card">
+        <div class="card-header">
+          <strong>News Item</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4">
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="title">Title</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="title"><i class="fa fa-header"></i></span>
+                    <input type="text" id="title" formControlName="title" class="form-control" placeholder="title.." aria-describedby="title">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="author">Author</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="author"><i class="fa fa-user"></i></span>
+                    <input type="text" id="author" formControlName="author" class="form-control" placeholder="author.." aria-describedby="author">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="published">Published</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="published"><i class="fa fa-check"></i></span>
+                    <input type="checkbox" id="published" formControlName="published" class="form-control" aria-describedby="published">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="published">Allow Comments</label>
+                <div class="col-md-3">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="allowComments"><i class="fa fa-check"></i></span>
+                    <input type="checkbox" id="allowComments" formControlName="allowComments" class="form-control" ria-describedby="allowComments">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="startDateUtc">Start Date</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="startDateModel"
+                           name="startDateUtc" formControlName="startDateUtc" ngbDatepicker #startDateUtcPicker="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="startDateUtcPicker.toggle()" type="button">
+                        <img src="/assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="endDateUtc">End Date</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="endDateModel"
+                           name="endDateUtc" formControlName="endDateUtc" ngbDatepicker #endDateUtcPicker="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="endDateUtcPicker.toggle()" type="button">
+                        <img src="/assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-8">
+                <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="quote">Quote</label>
+                    <div class="col-md-10">
+                      <textarea [froalaEditor] id="value" rows="5" formControlName="quote" class="form-control" placeholder="quote.."></textarea>
+                    </div>
+                  </div>
+                  
+              <div class="form-group row">
+                <label class="col-md-2 form-control-label" for="short">Short Desc</label>
+                <div class="col-md-10">
+                  <textarea [froalaEditor] id="value" rows="5" formControlName="short" class="form-control" placeholder="short description.."></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-2 form-control-label" for="description">Full Desc</label>
+                <div class="col-md-10">
+                  <textarea [froalaEditor] id="description" rows="5" formControlName="full" class="form-control" placeholder="description.."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" [disabled]="!frmGroup.valid" class="btn btn-default"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          <button type="button" (click)="onCancel()" class="btn btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

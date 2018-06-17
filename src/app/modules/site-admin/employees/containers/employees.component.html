@@ -1,0 +1,7 @@
+<app-profile-form *ngIf="profile" [employee]="employee" (close)="close($event)"></app-profile-form>
+<app-employee-list *ngIf="list"
+                   [rows]="employees"
+                   (add)="onAdd($event)"
+                   (edit)="onEdit($event)"
+                   (profile)="onProfile($event)"
+                   (remove)="onDelete($event)"></app-employee-list>

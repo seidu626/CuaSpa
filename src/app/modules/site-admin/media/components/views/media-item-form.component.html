@@ -1,0 +1,122 @@
+<div class="row align-items-center">
+  <div class="col-12 align-self-center">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="card">
+        <div class="card-header">
+          <strong>Media Item</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="name">Title</label>
+                <div class="col-md-9">
+                  <input type="text" id="title" formControlName="title" class="form-control" placeholder="title..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="name">Display Order</label>
+                <div class="col-md-9">
+                  <input type="number" step="1" id="displayOrder" formControlName="displayOrder" class="form-control" placeholder="displayOrder..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="name">Height</label>
+                <div class="col-md-9">
+                  <input type="number" min="0" step="0.1" id="height" formControlName="height" class="form-control" placeholder="height..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="name">Width</label>
+                <div class="col-md-9">
+                  <input type="number" min="0" step="0.1" id="width" formControlName="width" class="form-control" placeholder="width..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="backgroundColor">Background Color</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon col-4" id="backgroundColor" [style.background]="color"></span>
+                    <input type="text" [(colorPicker)]="color" formControlName="backgroundColor" [value]="color" aria-describedby="backgroundColor" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="action">Published</label>
+                <div class="col-md-3">
+                  <input type="checkbox" id="published" formControlName="published" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="name">Media</label>
+                <div class="col-md-9">
+                 
+                  <kendo-upload formControlName="upload"
+                                [multiple]="false"
+                                [saveUrl]="uploadSaveUrl"
+                                [removeUrl]="uploadRemoveUrl"
+                                [restrictions]="uploadRestrictions"
+                                (select)="selectEventHandler($event)"
+                                (clear)="clearEventHandler($event)"
+                                (remove)="removeEventHandler($event)"
+                                (complete)="completeEventHandler($event)">
+                  </kendo-upload>
+
+                  <div *ngIf="imagePreviews.length" class="img-preview example-config">
+                    <h3>Image Preveiw</h3>
+                    <img *ngFor="let image of imagePreviews"
+                         [src]="image.src"
+                         alt="image preview"
+                         style="width: 200px; margin: 10px;" />
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+            <div class="col-6">
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="action">Media Type</label>
+                <div class="col-md-5">
+                  <select class="form-control" id="mediaType" formControlName="mediaType">
+                    <option value="Gallery">Photo</option>
+                    <option value="Form">Form</option>
+                    <option value="Slider">Slider</option>
+                    <option value="Video">Video</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="action">Short Desc</label>
+                <div class="col-md-9">
+                  <textarea [froalaEditor] id="shortDesc" rows="5" formControlName="shortDesc" class="form-control" placeholder="Short Desc.."></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="action">Desc</label>
+                <div class="col-md-9">
+                  <textarea [froalaEditor] id="description" rows="5" formControlName="description" class="form-control" placeholder="description.."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <button type="submit" [disabled]="!form.valid" class="btn btn-default"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          <button type="button" (click)="onCancel()" class="btn btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

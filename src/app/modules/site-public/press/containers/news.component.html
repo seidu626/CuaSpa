@@ -1,0 +1,7 @@
+<app-news-detail *ngIf="news_item_detail" [newsItem]="newsItem" (close)="close($event)"></app-news-detail>
+
+
+<app-news-list *ngIf="news_item_list"
+                    [rows]="newsItemList"
+                    (viewEvent)="onDetail($event)"></app-news-list>
+

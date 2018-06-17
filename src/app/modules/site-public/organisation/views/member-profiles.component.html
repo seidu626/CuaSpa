@@ -1,0 +1,81 @@
+<section class="post-wrapper-top jt-shadow clearfix">
+  <div class="container">
+    <div class="col-lg-12">
+      <h2>Members</h2>
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a [routerLink]="['/public/home']">Home</a>
+        </li>
+        <li>Organisation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="white-wrapper">
+  <div class="container">
+    <div class="general-title">
+      <h2>Our Members</h2>
+      <hr>
+      <p class="lead">These is the team behind {{appName}}</p>
+    </div>
+    <!-- end general title -->
+
+    <div class="padding-top text-center">
+      <ng-template #loading>
+        <div class="col-4 offset-md-4">
+          Loading User Data...
+        </div>
+      </ng-template>
+
+      <div *ngIf="profiles | async; let userprofiles; else loading" class="">
+        <div *ngFor="let $profile of userprofiles;let count=index;" (click)="viewEvent.emit({id: $profile.id})" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 first">
+          <ng-template #ngclearfix>
+            <div class="col-4 offset-md-4">
+              <div class="clearfix"></div>
+              <hr>
+              <br>
+            </div>
+          </ng-template>
+
+          <div *ngIf="applyClearfix(count); else ngclearfix" class="team_member">
+            <div class="entry">
+              <img class="img-responsive" src="{{$profile.picturePath}}" alt="">
+              <div class="magnifier">
+                <div class="buttons">
+                  <a class="sf" rel="bookmark" (click)="viewEvent.emit({id: $profile.id})" style="cursor: pointer;">
+                    <span class="fa fa-user-circle-o"></span>
+                  </a>
+                  <a class="sf" rel="bookmark" href="{{$profile.email}}">
+                    <span class="fa fa-envelope"></span>
+                  </a>
+                  <a class="sf" rel="bookmark" href="{{$profile.facebook}}">
+                    <span class="fa fa-facebook"></span>
+                  </a>
+                  <a class="st" rel="bookmark" href="{{$profile.twitter}}">
+                    <span class="fa fa-twitter"></span>
+                  </a>
+                  <a class="sg" rel="bookmark" href="{{$profile.linkedin}}">
+                    <span class="fa fa-linkedin"></span>
+                  </a>
+                </div>
+              </div>
+              <!-- end magnifier -->
+            </div>
+            <!-- end entry -->
+            <h3>{{$profile.employee}}
+              <span>|</span>
+              <small>{{$profile.memberType}}</small>
+            </h3>
+            <p [innerHTML]="$profile.shortDescription"></p>
+          </div>
+          <!-- end team_member -->
+        </div>
+        <!-- end col-lg-3 -->
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</section>
+<!-- end white wrapper -->

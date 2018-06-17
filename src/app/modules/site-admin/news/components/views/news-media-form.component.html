@@ -1,0 +1,103 @@
+<div class="row align-items-center">
+  <div class="col-12 align-self-center">
+    <form [formGroup]="frmGroup" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="card">
+        <div class="card-header">
+          <strong>News Item</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4">
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="title">Title</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="title"><i class="fa fa-header"></i></span>
+                    <input type="text" id="title" formControlName="title" class="form-control" placeholder="title.." aria-describedby="title">
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="author">Display Order</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="displayOrder"><i class="fa fa-first-order"></i></span>
+                    <input type="number" min="0" step="1" id="displayOrder" formControlName="displayOrder" class="form-control" placeholder="displayOrder.." aria-describedby="displayOrder">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="published">Published</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="published"><i class="fa fa-check"></i></span>
+                    <input type="checkbox" id="published" formControlName="published" class="form-control" placeholder="published.." aria-describedby="published">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="published">Featured</label>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="isFeatured"><i class="fa fa-check"></i></span>
+                    <input type="checkbox" id="isFeatured" formControlName="isFeatured" class="form-control" placeholder="isFeatured.." aria-describedby="isFeatured">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="name">Media</label>
+                <div class="col-md-9">
+
+                  <kendo-upload formControlName="upload"
+                                [multiple]="false"
+                                [saveUrl]="uploadSaveUrl"
+                                [removeUrl]="uploadRemoveUrl"
+                                [restrictions]="uploadRestrictions"
+                                (select)="selectEventHandler($event)"
+                                (clear)="clearEventHandler($event)"
+                                (remove)="removeEventHandler($event)"
+                                (complete)="completeEventHandler($event)">
+                  </kendo-upload>
+
+                  <div *ngIf="imagePreviews.length" class="img-preview example-config">
+                    <h3>Image Preveiw</h3>
+                    <img *ngFor="let image of imagePreviews"
+                         [src]="image.src"
+                         alt="image preview"
+                         style="width: 200px; margin: 10px;" />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-8">
+              <div class="form-group row">
+                <label class="col-md-2 form-control-label" for="short">Short Desc</label>
+                <div class="col-md-10">
+                  <textarea [froalaEditor] id="value" rows="5" formControlName="shortDesc" class="form-control" placeholder="short description.."></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-2 form-control-label" for="description">Full Desc</label>
+                <div class="col-md-10">
+                  <textarea [froalaEditor] id="description" rows="5" formControlName="description" class="form-control" placeholder="description.."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" [disabled]="!frmGroup.valid" class="btn btn-default"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          <button type="button" (click)="onCancel()" class="btn btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
