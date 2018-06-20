@@ -1,7 +1,10 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+
+import {catchError} from 'rxjs/operators';
 import { Injectable } from "@angular/core";
 import { HttpInterceptor } from "@angular/common/http";
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent } from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
 import 'rxjs/Rx';
 
 
@@ -21,14 +24,14 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     headers = headers.clone({ headers: req.headers.set("Accept", "application/json") });
    
     //send the newly created request
-    return next.handle(headers)
-      .catch((error, caught) => {
+    return next.handle(headers).pipe(
+      catchError((error, caught) => {
         //intercept the respons error and displace it to the console
         console.log("Error Occurred");
         console.log(error);
         //return the error to the method that called it
-        return Observable.throw(error);
-      }) as any;
+        return observableThrowError(error);
+      })) as any;
   
   }
 }

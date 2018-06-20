@@ -39,15 +39,15 @@ export class UserService extends BaseService {
       .post(
       this.baseUrl + 'auth/login',
       JSON.stringify({ userName, password }), { headers }
-      )
-      .map(res => res.json())
-      .map(res => {
+      ).pipe(
+      map(res => res.json()),
+      map(res => {
         localStorage.setItem('auth_token', res.auth_token);
         this.loggedIn = true;
         this._authNavStatusSource.next(true);
         return true;
-      })
-      .catch(this.handleError);
+      }),
+      catchError(this.handleError),);
   }
 
   logout() {
@@ -66,15 +66,15 @@ export class UserService extends BaseService {
     const body = JSON.stringify({ accessToken });
     return this.http
       .post(
-      this.baseUrl + '/externalauth/facebook', body, { headers })
-      .map(res => res.json())
-      .map(res => {
+      this.baseUrl + '/externalauth/facebook', body, { headers }).pipe(
+      map(res => res.json()),
+      map(res => {
         localStorage.setItem('auth_token', res.auth_token);
         this.loggedIn = true;
         this._authNavStatusSource.next(true);
         return true;
-      })
-      .catch(this.handleError);
+      }),
+      catchError(this.handleError),);
   }
 }
 

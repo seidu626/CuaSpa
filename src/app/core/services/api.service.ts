@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable ,  Subject } from 'rxjs';
 import { LoggerService } from './log4ts/logger.service';
-import { ResponsePayload } from '../../models/response-payload';
-import { Subject } from 'rxjs/Subject';
 import { environment } from '../../../environments/environment';
 import { RequestOptionsArgs, Http } from '@angular/http';
 import { LoaderService } from '../loader/loader.service';
-import { JwtService } from './jwt.service';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, finalize, tap } from 'rxjs/operators';
 
@@ -15,7 +12,8 @@ const BASE_API_ENDPOINT = environment.baseApiEndpoint;
 
 @Injectable()
 export abstract class ApiService {
-  constructor(protected http: Http, protected logger: LoggerService, protected apiUrl: string = null, protected loaderService: LoaderService) {
+  constructor(protected http: Http, protected logger: LoggerService, protected apiUrl: string = null,
+    protected loaderService: LoaderService) {
   }
 
   public get getBaseApiEndPoint() { return BASE_API_ENDPOINT; }

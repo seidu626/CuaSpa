@@ -1,11 +1,8 @@
+
+import {map, finalize} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable ,  Subject ,  BehaviorSubject } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../../../../core/services/api.service';
 import { LoggerService } from '../../../../core/services/log4ts/logger.service';
@@ -26,55 +23,55 @@ export class EmployeeCategoriesService extends ApiService {
   }
 
   getAll(): Observable<EmployeeCategory[]> {
-    return super.getAll()
-      .map((res: Response) => {
+    return super.getAll().pipe(
+      map((res: Response) => {
         let body = res.json();       
         return body || {};
-      })
-      .map((payload: EmployeeCategory[]) => {       
+      }),
+      map((payload: EmployeeCategory[]) => {       
         return payload;      
-      });
+      }),);
   }
 
   get(id: number): Observable<EmployeeCategory> {
-    return super.get(id)
-      .map((res: Response) => {
+    return super.get(id).pipe(
+      map((res: Response) => {
         let body = res.json();     
         return body || {};
-      })
-      .map((payload: EmployeeCategory) => {
+      }),
+      map((payload: EmployeeCategory) => {
         return payload;
-      });
+      }),);
   }
 
   //create
   post(payload: EmployeeCategory){
     var observable = super.post(payload);
-    return observable.finally(() => {
+    return observable.pipe(finalize(() => {
       this.getAll().subscribe(
         (result) => { this.dataObserver.next(result) }
       );
-    });
+    }));
   }
 
   //update
   put(id: any, payload: EmployeeCategory){
     var observable = super.put(id, payload);
-    return observable.finally(() => {
+    return observable.pipe(finalize(() => {
       this.getAll().subscribe(
         (result) => { this.dataObserver.next(result) }
       );
-    });
+    }));
   }
 
   //delete
   delete(id: any) {
     var observable = super.delete(id);
-    return observable.finally(() => {
+    return observable.pipe(finalize(() => {
       this.getAll().subscribe(
         (result) => { this.dataObserver.next(result) }
       );
-    });
+    }));
   }
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Output, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { SettingsService } from '@app/modules/site-admin/settings/services/settings.service';
 import { SettingInfo } from '@app/modules/site-admin/settings/models/settingInfo';

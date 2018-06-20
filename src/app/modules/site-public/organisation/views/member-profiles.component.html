@@ -6,7 +6,7 @@
         <li>
           <a [routerLink]="['/public/home']">Home</a>
         </li>
-        <li>Organisation</li>
+        <li>&nbsp; Organisation</li>
       </ul>
     </div>
   </div>
@@ -29,7 +29,7 @@
       </ng-template>
 
       <div *ngIf="profiles | async; let userprofiles; else loading" class="">
-        <div *ngFor="let $profile of userprofiles;let count=index;" (click)="viewEvent.emit({id: $profile.id})" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 first">
+        <div *ngFor="let $profile of userprofiles;let count=index;" (click)="viewEvent.emit({id: $profile.id})" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
           <ng-template #ngclearfix>
             <div class="col-4 offset-md-4">
               <div class="clearfix"></div>

@@ -1,11 +1,8 @@
+
+import {map, catchError} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http, RequestOptionsArgs } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable ,  Subject ,  BehaviorSubject } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { MediaItem } from '@app/modules/site-admin/media/models/media-item';
 import { LoggerService } from '@app/core/services/log4ts/logger.service';
@@ -26,13 +23,13 @@ export class MediaItemService extends ApiDataService<MediaItem> {
 
   getSliders(height: number = 450, width: number = 650): Observable<Array<Slider>> {
     const url = environment.baseApiEndpoint + `mediaItems/contentSlider?height=${height}&width=${width}`;
-    return this.http.get(url)
-      .catch(super.onCatch)
-      .map((res: Response) => {
+    return this.http.get(url).pipe(
+      catchError(super.onCatch),
+      map((res: Response) => {
         const body = res.json();
         return body || {};
-      })
-      .map((payload: MediaItem[]) => {
+      }),
+      map((payload: MediaItem[]) => {
         const sliders = payload.map(x => new Slider({
           'id': x.id,
           'title': x.title,
@@ -42,35 +39,35 @@ export class MediaItemService extends ApiDataService<MediaItem> {
         }));
         APP_SETTINGS.contentsliders = sliders;
         return sliders;
-      });
+      }),);
   }
   getAllMedia(height: number = 0, width: number = 0, thumbHeight: number = 0,
     thumbWidth: number = 0, mediaType: string = ''): Observable<MediaItem[]> {
     const url =
       environment.baseApiEndpoint
       + `mediaItems?height=${height}&width=${width}&thumbHeight=${thumbHeight}&thumbWidth=${thumbWidth}&mediaType=${mediaType}`;
-    return this.http.get(url)
-      .catch(super.onCatch)
-      .map((res: Response) => {
+    return this.http.get(url).pipe(
+      catchError(super.onCatch),
+      map((res: Response) => {
         const body = res.json();
         return body || {};
-      })
-      .map((payload: MediaItem[]) => {
+      }),
+      map((payload: MediaItem[]) => {
         return payload.map(m => {
           m.path = environment.Server + m.path;
           m.thumbPath = environment.Server + m.thumbPath;
           return m;
         });
-      });
+      }),);
   }
 
   get(id: number): Observable<MediaItem> {
-    return super.get(id)
-      .map((payload: MediaItem) => {
+    return super.get(id).pipe(
+      map((payload: MediaItem) => {
         payload.path = environment.Server + payload.path;
         payload.thumbPath = environment.Server + payload.thumbPath;
         return payload;
-      });
+      }));
   }
 
 

@@ -24,6 +24,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { EmployeeListComponent } from '@app/modules/site-admin/employees/components/employee-list.component';
 import { EmployeesComponent } from '@app/modules/site-admin/employees/containers/employees.component';
 import { UploadModule } from '@progress/kendo-angular-upload';
+import { ProfileService } from '@app/modules/site-admin/employees/services/profile.service';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { UploadModule } from '@progress/kendo-angular-upload';
     EmployeeCategoriesService,
     JobRoleService,
     MemberTypeService,
-    LevelService
+    LevelService,
+    ProfileService
   ]
 })
 export class EmployeesModule { }

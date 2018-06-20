@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { MediaItemService } from '@app/modules/site-admin/media/services/media-item.service';
 import { FileRestrictions, SelectEvent, ClearEvent, RemoveEvent, FileInfo } from '@progress/kendo-angular-upload';
@@ -17,20 +17,20 @@ export class MediaItemFormComponent implements OnInit {
   id: number;
   editMode = false;
   form: FormGroup;
-  color = "#ffffff";
+  color = '#ffffff';
 
 
   public events: string[] = [];
   public imagePreviews: FileInfo[] = [];
-  public uploadRemoveUrl = environment.baseApiEndpoint + 'fileManager/deleteFiles';;
+  public uploadRemoveUrl = environment.baseApiEndpoint + 'fileManager/deleteFiles';
   public uploadRestrictions: FileRestrictions = {
-    allowedExtensions: [".jpg", ".png", ".jpeg", ".pdf", ".docx", ".doc", ".odx", ".mp4"]
+    allowedExtensions: ['.jpg', '.png', '.jpeg', '.pdf', '.docx', '.doc', '.odx', '.mp4']
   };
   public uploadSaveUrl = environment.baseApiEndpoint + 'fileManager/uploadFiles'; // should represent an actual API endpoint
 
 
 
-  // required for validation 
+  // required for validation
   get title() { return this.form.get('title'); }
   get shortDesc() { return this.form.get('shortDesc'); }
   get description() { return this.form.get('description'); }
@@ -42,7 +42,7 @@ export class MediaItemFormComponent implements OnInit {
   get height() { return this.form.get('height'); }
   get backgroundColor() { return this.form.get('backgroundColor'); }
   get upload() { return this.form.get('upload'); }
-  
+
 
   constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private toastr: ToastrService,
     private service: MediaItemService) {
@@ -66,10 +66,10 @@ export class MediaItemFormComponent implements OnInit {
   }
 
   onSubmit() {
-    let vbOperation: Observable<Response>
+    let vbOperation: Observable<Response>;
 
     const formModel = this.form.value;
-    let uploadedFile = formModel['upload'];
+    const uploadedFile = formModel['upload'];
     if (uploadedFile) {
       formModel['size'] = uploadedFile[0]['size'];
       formModel['seoFilename'] = uploadedFile[0]['name'];
@@ -82,24 +82,22 @@ export class MediaItemFormComponent implements OnInit {
     }
 
     if (this.editMode) {
-      formModel["id"] = this.id;
+      formModel['id'] = this.id;
       vbOperation = this.service.put(this.id, formModel);
-    }
-    else {
-      formModel["id"] = 0;
+    } else {
+      formModel['id'] = 0;
       vbOperation = this.service.post(formModel);
     }
 
     // Subscribe to observable
     vbOperation.subscribe(
-      results => {  
+      results => {
         // Switch editing status
         if (this.editMode) {
           this.editMode = !this.editMode;
-          this.toastr.info("Record successfully modified.", "Record Modified");
-        }
-        else {
-          this.toastr.success("Record successfully added.", "Record Modified");
+          this.toastr.info('Record successfully modified.', 'Record Modified');
+        } else {
+          this.toastr.success('Record successfully added.', 'Record Modified');
         }
       },
       err => {
@@ -153,9 +151,9 @@ export class MediaItemFormComponent implements OnInit {
     }
   }
 
-  //file operation
+  // file operation
   public clearEventHandler(e: ClearEvent): void {
-    this.log("Clearing the file upload");
+    this.log('Clearing the file upload');
     this.imagePreviews = [];
   }
 
@@ -201,6 +199,6 @@ export class MediaItemFormComponent implements OnInit {
   private log(event: string): void {
     this.events.unshift(`${event}`);
   }
-  //file operations
+  // file operations
 
 }

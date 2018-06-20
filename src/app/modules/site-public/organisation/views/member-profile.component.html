@@ -6,7 +6,7 @@
         <li>
           <a [routerLink]="['/public/home']">Home</a>
         </li>
-        <li>Organisation</li>
+        <li>&nbsp; Organisation</li>
       </ul>
     </div>
   </div>
@@ -21,7 +21,7 @@
     </ng-template>
 
     <div *ngIf="userProfile | async; let profile; else loading" class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 first">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="team_member">
           <div class="entry">
             <img class="img-responsive" src="{{profile.picturePath}}" alt="">

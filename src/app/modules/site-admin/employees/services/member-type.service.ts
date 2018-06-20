@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import { Subject } from 'rxjs/Subject';
-
-import { BehaviorSubject } from 'rxjs';
+import { Observable ,  Subject ,  BehaviorSubject } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { LoaderService } from '../../../../core/loader/loader.service';

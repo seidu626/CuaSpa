@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -10,11 +10,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './views/news-item-list.component.html',
 })
 export class NewsItemListComponent implements OnInit {
-  
   @ViewChild(DatatableComponent) table: DatatableComponent;
   @Input() rows = [];
-  loadingIndicator: boolean = true;
-  reorderable: boolean = true;
+  loadingIndicator = true;
+  reorderable = true;
   columns = [
     { name: 'id' },
     { name: 'title' },
@@ -30,15 +29,14 @@ export class NewsItemListComponent implements OnInit {
   @Output() remove = new EventEmitter<number>();
 
   placements: string[] = ['top', 'left', 'right', 'bottom'];
-  popoverTitle: string = 'Delete record?';
-  popoverMessage: string = 'Are you really <b>sure</b> you want to do this?';
-  confirmText: string = 'Yes <i class="glyphicon glyphicon-ok"></i>';
-  cancelText: string = 'No <i class="glyphicon glyphicon-remove"></i>';
-  confirmClicked: boolean = false;
-  cancelClicked: boolean = false;
+  popoverTitle = 'Delete record?';
+  popoverMessage = 'Are you really <b>sure</b> you want to do this?';
+  confirmText = 'Yes <i class="glyphicon glyphicon-ok"></i>';
+  cancelText = 'No <i class="glyphicon glyphicon-remove"></i>';
+  confirmClicked = false;
+  cancelClicked = false;
 
   ngOnInit(): void {
-    
   }
 
   updateFilter(event) {
@@ -53,7 +51,5 @@ export class NewsItemListComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private toastr: ToastrService,
     vcr: ViewContainerRef) {
   }
-
- 
 
 }

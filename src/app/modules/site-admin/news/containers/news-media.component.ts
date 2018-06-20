@@ -1,5 +1,7 @@
+
+import {map} from 'rxjs/operators';
 import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject ,  Observable } from 'rxjs';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +10,6 @@ import { SettingInfo } from '@app/modules/site-admin/settings/models/settingInfo
 import { SettingsService } from '@app/modules/site-admin/settings/services/settings.service';
 import { NewsItem } from '@app/domain/models/news/news-item';
 import { NewsItemService } from '@app/domain/services/news/news-item.service';
-import { Observable } from 'rxjs/Observable';
 import { NewsMedia } from '@app/domain/models/news/news-media';
 import { NewsMediaService } from '@app/domain/services/news/news-media.service';
 
@@ -66,9 +67,9 @@ export class NewsMediaComponent implements OnInit {
 
 
   getNewsMediaList(id: number) {
-    this.newsMediaList = this.newMediaService.dataObserver.map((payload) => {
+    this.newsMediaList = this.newMediaService.dataObserver.pipe(map((payload) => {
       return payload.filter(m => m.newsItemId == id);
-    });
+    }));
     this.news_media_list = true;
     this.news_media_edit = false;
   }

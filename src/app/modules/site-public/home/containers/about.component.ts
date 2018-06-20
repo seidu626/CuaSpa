@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { ActivatedRoute, Router, ParamMap  } from '@angular/router';
 import { SettingsService } from '@app/modules/site-admin/settings/services/settings.service';
 import { ANIMATE_ON_ROUTE_ENTER } from '@app/core';

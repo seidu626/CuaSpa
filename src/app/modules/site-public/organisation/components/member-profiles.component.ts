@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewContainerRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject ,  Observable } from 'rxjs';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SettingsService } from '@app/modules/site-admin/settings/services/settings.service';
 import { Profile } from '@app/modules/site-admin/employees/models/profile';
-import { Observable } from 'rxjs/Observable';
 
 
 @Component({

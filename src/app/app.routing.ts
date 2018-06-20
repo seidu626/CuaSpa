@@ -12,7 +12,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     loadChildren: '@app/modules/site-admin/site-admin.module#SiteAdminModule',
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'auth',

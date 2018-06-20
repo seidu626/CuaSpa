@@ -37,10 +37,10 @@ export class SettingsService extends ApiDataService<SettingInfo> {
   }
 
   getAll(options?: RequestOptionsArgs): Observable<SettingInfo[]> {
-    return super.getAll().map((payload) => {
+    return super.getAll().pipe(map((payload) => {
       this.settings = payload;
       return payload;
-    });
+    }));
   }
 
   post(payload: any): Observable<Response> {
@@ -56,13 +56,13 @@ export class SettingsService extends ApiDataService<SettingInfo> {
     return this.http.get(url)
     .pipe(
       catchError(this.onCatch)
-    )      .map((res: Response) => {
+    ).pipe(      map((res: Response) => {
         const body = res.json();
         return body || {};
-      })
-      .map((payload: GeneralSettings) => {
+      }),
+      map((payload: GeneralSettings) => {
         return payload;
-      });
+      }),);
   }
 
   postGeneralSettings(body: any, options?: RequestOptionsArgs): Observable<Response> {

@@ -71,6 +71,20 @@
             </div>
             <div class="col-6">
 
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="physicalAddress">Physical Address</label>
+                <div class="col-md-9">
+                  <input type="text" id="physicalAddress" formControlName="physicalAddress" class="form-control" placeholder="physicalAddress..">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="firstname">Postal Address</label>
+                <div class="col-md-9">
+                  <input type="text" id="postalAddress" formControlName="postalAddress" class="form-control" placeholder="postalAddress..">
+                </div>
+              </div>
+
               <div *ngIf="divisions != null" class="form-group row">
                 <label class="col-md-3 form-control-label" for="divisionId">Division</label>
                 <div class="col-md-6">
@@ -110,23 +124,14 @@
               <div class="form-group row">
                 <label class="col-md-3 form-control-label" for="avatar">Profile Picture</label>
                 <div class="col-md-9">
-                  <kendo-upload formControlName="avatar"
-                                [multiple]="false"
-                                [saveUrl]="uploadSaveUrl"
-                                [removeUrl]="uploadRemoveUrl"
-                                [restrictions]="uploadRestrictions"
-                                (select)="selectEventHandler($event)"
-                                (clear)="clearEventHandler($event)"
-                                (remove)="removeEventHandler($event)"
-                                (complete)="completeEventHandler($event)">
+                  <kendo-upload formControlName="avatar" [multiple]="false" [saveUrl]="uploadSaveUrl" [removeUrl]="uploadRemoveUrl" [restrictions]="uploadRestrictions"
+                    (select)="selectEventHandler($event)" (clear)="clearEventHandler($event)" (remove)="removeEventHandler($event)"
+                    (complete)="completeEventHandler($event)">
                   </kendo-upload>
 
                   <div *ngIf="imagePreviews.length" class="img-preview example-config">
                     <h3>Image Preveiw</h3>
-                    <img *ngFor="let image of imagePreviews"
-                         [src]="image.src"
-                         alt="image preview"
-                         style="width: 200px; margin: 10px;" />
+                    <img *ngFor="let image of imagePreviews" [src]="image.src" alt="image preview" style="width: 200px; margin: 10px;" />
                   </div>
                 </div>
               </div>
@@ -135,8 +140,10 @@
 
         </div>
         <div class="card-footer">
-          <button type="submit" [disabled]="!empForm.valid" class="btn btn-default"><i class="fa fa-dot-circle-o"></i> Submit</button>
-          <button type="button" (click)="onCancel()" class="btn btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+          <button type="submit" [disabled]="!empForm.valid" class="btn btn-default">
+            <i class="fa fa-dot-circle-o"></i> Submit</button>
+          <button type="button" (click)="onCancel()" class="btn btn-danger">
+            <i class="fa fa-ban"></i> Cancel</button>
         </div>
       </div>
     </form>

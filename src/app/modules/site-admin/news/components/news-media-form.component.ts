@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Output, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NewsItem } from '@app/domain/models/news/news-item';
 import { NewsItemService } from '@app/domain/services/news/news-item.service';
@@ -28,9 +28,9 @@ export class NewsMediaFormComponent implements OnInit {
 
   public events: string[] = [];
   public imagePreviews: FileInfo[] = [];
-  public uploadRemoveUrl = environment.baseApiEndpoint + 'fileManager/deleteFiles';;
+  public uploadRemoveUrl = environment.baseApiEndpoint + 'fileManager/deleteFiles';
   public uploadRestrictions: FileRestrictions = {
-    allowedExtensions: [".jpg", ".png", ".jpeg", ".pdf", ".docx", ".doc", ".odx"]
+    allowedExtensions: ['.jpg', '.png', '.jpeg', '.pdf', '.docx', '.doc', '.odx']
   };
   public uploadSaveUrl = environment.baseApiEndpoint + 'fileManager/uploadFiles'; // should represent an actual API endpoint
 
@@ -61,11 +61,12 @@ export class NewsMediaFormComponent implements OnInit {
   }
 
   onSubmit() {
-    let operation: Observable<Response>
+    let operation: Observable<Response>;
 
     const formModel = this.frmGroup.value;
     formModel['newsItemId'] = this.newsItemId;
-    let uploadedFile = formModel['upload'];
+    const uploadedFile = formModel['upload'];
+    console.log(uploadedFile);
     formModel['size'] = uploadedFile[0]['size'];
     formModel['path'] = uploadedFile[0]['name'];
     formModel['fileExtension'] = uploadedFile[0]['extension'];
@@ -79,14 +80,16 @@ export class NewsMediaFormComponent implements OnInit {
     if (!formModel['published']) {
       formModel['published'] = false;
     }
+    if (!formModel['displayOrder']) {
+      formModel['displayOrder'] = 0;
+    }
 
 
     if (this.editMode) {
-      formModel["id"] = this.newsMedia.id;
+      formModel['id'] = this.newsMedia.id;
       operation = this.service.put(this.id, formModel);
-    }
-    else {
-      formModel["id"] = "0";
+    } else {
+      formModel['id'] = '0';
       operation = this.service.post(formModel);
     }
 
@@ -95,10 +98,9 @@ export class NewsMediaFormComponent implements OnInit {
       results => {
         if (this.editMode) {
           this.editMode = !this.editMode;
-          this.toastr.info("Record successfully modified.", "Record Modified");
-        }
-        else {
-          this.toastr.success("Record successfully added.", "Record Modified");
+          this.toastr.info('Record successfully modified.', 'Record Modified');
+        } else {
+          this.toastr.success('Record successfully added.', 'Record Modified');
         }
       },
       err => {
@@ -110,7 +112,7 @@ export class NewsMediaFormComponent implements OnInit {
   }
 
 
-  //#endregion 
+  //#endregion
 
   onCancel() {
     this.close.emit({component: 'news_media_list', id: this.newsItemId});
@@ -118,7 +120,7 @@ export class NewsMediaFormComponent implements OnInit {
 
   private initForm() {
 
-    //observe and fetch departments
+    // observe and fetch departments
 
     this.frmGroup = this.fb.group({
       title: ['', Validators.required],
@@ -147,9 +149,9 @@ export class NewsMediaFormComponent implements OnInit {
 
   }
 
-  //file operation
+  // file operation
   public clearEventHandler(e: ClearEvent): void {
-    this.log("Clearing the file upload");
+    this.log('Clearing the file upload');
     this.imagePreviews = [];
   }
 
@@ -195,5 +197,5 @@ export class NewsMediaFormComponent implements OnInit {
   private log(event: string): void {
     this.events.unshift(`${event}`);
   }
-  //file operations
+  // file operations
 }

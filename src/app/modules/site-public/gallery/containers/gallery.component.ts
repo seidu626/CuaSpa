@@ -1,10 +1,11 @@
+
+import {map} from 'rxjs/operators';
 import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject ,  Observable } from 'rxjs';
 import { ActivatedRoute, Router, Params, UrlTree, PRIMARY_OUTLET, UrlSegmentGroup, UrlSegment } from '@angular/router';
 import { SettingsService } from '@app/modules/site-admin/settings/services/settings.service';
 import { ANIMATE_ON_ROUTE_ENTER } from '@app/core';
 import { APP_SETTINGS } from '@app/settings/app-settings';
-import { Observable } from 'rxjs/Observable';
 import { MediaItem, IMedia } from '@app/modules/site-admin/media/models/media-item';
 import { MediaItemService } from '@app/modules/site-admin/media/services/media-item.service';
 import { NewsItem } from '@app/domain/models/news/news-item';
@@ -45,7 +46,7 @@ export class GalleryComponent implements OnInit {
         case 'videos': {
           this.showPhotoGallery = false;
           this.showVidGallery = true;
-          this.videos = this.getItems(0, 0, 0, 0, 'video').map((payload: MediaItem[]) => {
+          this.videos = this.getItems(0, 0, 0, 0, 'video').pipe(map((payload: MediaItem[]) => {
             return payload.map(m => {
               const mObject: IMedia = {
                 title: m.title,
@@ -54,7 +55,7 @@ export class GalleryComponent implements OnInit {
               };
               return mObject;
             });
-          });
+          }));
           break;
         } // videos
         default: {

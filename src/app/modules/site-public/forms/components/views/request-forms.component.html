@@ -4,9 +4,9 @@
       <h2>Request Forms</h2>
       <ul class="breadcrumb pull-right">
         <li>
-          <a [routerLink]="['/public/home']">Home</a>
+          <a [routerLink]="['/public/home']">Home </a>
         </li>
-        <li> Services</li>
+        <li>&nbsp; Services</li>
       </ul>
     </div>
   </div>
@@ -27,7 +27,7 @@
         </ng-template>
 
         <div class="custom-services" *ngIf="requestForms | async; let reqfiles; else loading">
-          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 first" *ngFor="let $reqfile of reqfiles">
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngFor="let $reqfile of reqfiles">
             <div class="ch-item">
               <div class="ch-info-wrap">
                 <div class="ch-info">

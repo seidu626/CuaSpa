@@ -1,5 +1,5 @@
 <ng-progress></ng-progress>
-<app-header [fixed]="true" [navbarBrandFull]="{src: 'assets/img/admin_logo.png', width: 89, height: 15, alt: 'CoreUI Logo'}" [navbarBrandMinimized]="{src: 'assets/img/logo.png', width: 30, height: 30, alt: 'CoreUI Logo'}"
+<app-header [fixed]="true" [navbarBrandFull]="{src: 'assets/img/admin_logo.png', width: 89, height: 15, alt: 'Credit Union'}" [navbarBrandMinimized]="{src: 'assets/img/admin_logo.png', width: 30, height: 30, alt: 'Credit Union'}"
   [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
@@ -14,10 +14,6 @@
   </ul>
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item d-md-down-none">
-      <a href="javascript:void(0)" (click)="logout()" [hidden]="!isLoggedIn$ | async">
-        <i class="fa fa-lock"></i> Logout</a>
-      <a href="javascript:void(0)" (click)="login()" [hidden]="isLoggedIn$ | async">
-        <i class="fa fa-lock"></i> Login</a>
     </li>
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true" aria-expanded="false"
@@ -28,14 +24,11 @@
         <div class="dropdown-header text-center">
           <strong>Account</strong>
         </div>
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="javascript:void(0)">
           <i class="fa fa-user"></i> Profile</a>
         <div class="divider"></div>
-        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()" [hidden]="!isLoggedIn">
+        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()" [hidden]="!isLoggedIn$ | async">
           <i class="fa fa-lock"></i> Logout</a>
-        <a class="dropdown-item" href="javascript:void(0)" (click)="login()" [hidden]="isLoggedIn">
-          <i class="fa fa-lock"></i> Login</a>
-
       </div>
     </li>
   </ul>

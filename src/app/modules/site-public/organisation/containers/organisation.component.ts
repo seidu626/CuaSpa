@@ -1,12 +1,13 @@
+
+import {map} from 'rxjs/operators';
 import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject ,  Observable } from 'rxjs';
 import { ActivatedRoute, Router, Params, UrlTree, PRIMARY_OUTLET, UrlSegmentGroup, UrlSegment } from '@angular/router';
 import { SettingsService } from '@app/modules/site-admin/settings/services/settings.service';
 import { ANIMATE_ON_ROUTE_ENTER } from '@app/core';
 import { APP_SETTINGS } from '@app/settings/app-settings';
 import { Profile } from '@app/modules/site-admin/employees/models/profile';
 import { ProfileService } from '@app/modules/site-admin/employees/services/profile.service';
-import { Observable } from 'rxjs/Observable';
 import { environment as env } from '@env/environment';
 
 @Component({
@@ -85,8 +86,8 @@ export class OrganisationComponent implements OnInit {
     this.showProfile = false;
     this.showProfileList = true;
     if (memberType) {
-      return this.profiles = this.profileService.getAll(200, 235)
-        .map((stream) => stream.filter(p => p.memberType.toLowerCase() === memberType.toLowerCase()));
+      return this.profiles = this.profileService.getAll(200, 235).pipe(
+        map((stream) => stream.filter(p => p.memberType.toLowerCase() === memberType.toLowerCase())));
     }
     return this.profiles = this.profileService.getAll(200, 235);
   }

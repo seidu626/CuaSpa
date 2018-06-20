@@ -1,10 +1,8 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-
 // Layouts
 import { FullLayoutAdminComponent } from '@app/layouts/administration/full-layout-admin.component';
-import { SharedModule } from '@app/shared/shared.module';
+
 
 export const routes: Routes = [
   {

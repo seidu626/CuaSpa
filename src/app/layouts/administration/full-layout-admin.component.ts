@@ -3,7 +3,6 @@ import { Utils } from '@app/shared/utils';
 import { navItems } from './_nav';
 import { Router, NavigationEnd, RouterStateSnapshot } from '@angular/router';
 import { User } from '@app/modules/auth/models/user';
-import { UserFormComponent } from '@app/modules/site-admin/security/components/user-form.component';
 import { Store } from '@ngrx/store';
 import * as fromAuth from '@app/modules/auth/store/reducers';
 import * as Auth from '@app/modules/auth/store/actions/auth.actions';

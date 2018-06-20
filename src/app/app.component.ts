@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Http, RequestOptionsArgs } from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
@@ -25,11 +27,11 @@ export class AppComponent implements OnInit {
 
   //fetch all
   getAll(){
-    return this.http.get("http://localhost:11312/api/valuebooktypes")
-      .map(response => {
+    return this.http.get("http://localhost:11312/api/valuebooktypes").pipe(
+      map(response => {
         const data = response.json();
         return data || [];
-      }).subscribe(
+      })).subscribe(
       (data) => { console.log(data)} 
     )   
   }

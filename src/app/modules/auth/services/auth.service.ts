@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs';
+
+import {empty as observableEmpty,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { User, Authenticate } from '../models/user';
 import { map, tap, catchError, retry} from 'rxjs/operators';
@@ -29,7 +30,7 @@ export class AuthService {
         catchError((err, caught) => {
           console.log(err);
           this.toastyService.error(err.error['login_failure'][0], 'ERROR!!');
-          return Observable.empty();
+          return observableEmpty();
         })
       );
   }
@@ -52,7 +53,7 @@ export class AuthService {
         }),
         catchError((err, caught) => {
           this.toastyService.error(err.error.errors.full_messages.join('<br>'), 'ERROR!!');
-          return Observable.empty();
+          return observableEmpty();
         })
       );
   }
@@ -80,8 +81,8 @@ export class AuthService {
    */
   current_user(): Observable<User> {
     return this.http
-      .get<User>('users/whoami')
-      .map(body => body);
+      .get<User>('users/whoami').pipe(
+      map(body => body));
   }
 
   /**
@@ -93,11 +94,11 @@ export class AuthService {
    */
   logout() {
     return this.http
-      .delete<{ success: boolean }>('auth/logout')
-      .map(body => {
+      .delete<{ success: boolean }>('auth/logout').pipe(
+      map(body => {
         localStorage.removeItem('user');
         return body.success;
-      });
+      }));
   }
 
   /**

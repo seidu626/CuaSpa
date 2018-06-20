@@ -1,14 +1,12 @@
-import { Observable } from 'rxjs';
+import { Observable ,  Subject } from 'rxjs';
 import { Component, ChangeDetectionStrategy, HostBinding, Output, EventEmitter, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as fromAuth from '@app/modules/auth/store/reducers';
 import { environment as env } from '@env/environment';
-import { Subject } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Router, ActivationEnd, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
-import { filter } from 'rxjs/operators/filter';
+import { takeUntil ,  filter } from 'rxjs/operators';
 import { SocialSettings } from '@app/modules/site-admin/settings/models/social-settings';
 import { ContactDataSettings } from '@app/modules/site-admin/settings/models/contact-data-settings';
 import { CompanyInformationSettings } from '@app/modules/site-admin/settings/models/company-information-settings';

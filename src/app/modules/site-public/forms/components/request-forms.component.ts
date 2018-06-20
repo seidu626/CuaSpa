@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewContainerRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject ,  Observable } from 'rxjs';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SettingsService } from '@app/modules/site-admin/settings/services/settings.service';
-import { Observable } from 'rxjs/Observable';
 import { MediaItem } from '@app/modules/site-admin/media/models/media-item';
 
 

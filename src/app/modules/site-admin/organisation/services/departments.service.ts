@@ -1,11 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import { Subject } from 'rxjs/Subject';
 
-import { BehaviorSubject } from 'rxjs';
+import {map, finalize} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Observable ,  Subject ,  BehaviorSubject } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ApiService } from '../../../../core/services/api.service';
@@ -29,55 +25,55 @@ export class DepartmentsService extends ApiService {
   }
 
   getAll(): Observable<Department[]> {
-    return super.getAll()
-      .map((res: Response) => {
+    return super.getAll().pipe(
+      map((res: Response) => {
         let body = res.json();
         return body || {};
-      })
-      .map((payload: Department[]) => {
+      }),
+      map((payload: Department[]) => {
         return payload;
-      });
+      }),);
   }
 
   get(id: number): Observable<Department> {
-    return super.get(id)
-      .map((res: Response) => {
+    return super.get(id).pipe(
+      map((res: Response) => {
         let body = res.json();
         return body || {};
-      })
-      .map((payload: Department) => {
+      }),
+      map((payload: Department) => {
         return payload;
-      });
+      }),);
   }
 
   //create
   post(payload: Department): Observable<Response>{
     var observable = super.post(payload,);
-    return observable.finally(() => {
+    return observable.pipe(finalize(() => {
       this.getAll().subscribe(
         (result) => { this.departmentObserver.next(result) }
       );
-    });
+    }));
   }
 
   //update
   put(id: any, payload: Department): Observable<Response>{
     var observable = super.put(id, payload);
-    return observable.finally(() => {
+    return observable.pipe(finalize(() => {
       this.getAll().subscribe(
         (result) => { this.departmentObserver.next(result) }
       );
-    });
+    }));
   }
 
   //delete
   delete(id: any): Observable<Response>{
     var observable = super.delete(id);
-    return observable.finally(() => {
+    return observable.pipe(finalize(() => {
       this.getAll().subscribe(
         (result) => { this.departmentObserver.next(result) }
       );
-    });
+    }));
   }
 
 }

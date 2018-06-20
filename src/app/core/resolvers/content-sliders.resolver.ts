@@ -1,6 +1,6 @@
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MediaItemService } from '@app/modules/site-admin/media/services/media-item.service';
 import { Slider } from '@app/modules/site-public/home/models/slider';
 

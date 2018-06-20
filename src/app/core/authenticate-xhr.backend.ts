@@ -1,7 +1,10 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+
+import {catchError} from 'rxjs/operators';
 import { Request, XHRBackend, BrowserXhr, ResponseOptions, XSRFStrategy, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+
+
 import { Injectable } from '@angular/core';
 
 // sweet global way to handle 401s - works in tandem with existing AuthGuard route checks
@@ -16,7 +19,7 @@ export class AuthenticateXHRBackend extends XHRBackend {
 
     createConnection(request: Request) {
         let xhrConnection = super.createConnection(request);
-        xhrConnection.response = xhrConnection.response.catch((error: Response) => {
+        xhrConnection.response = xhrConnection.response.pipe(catchError((error: Response) => {
             if ((error.status === 401 || error.status === 403) && (window.location.href.match(/\?/g) || []).length < 2) {
                 
                 console.log('The authentication session expired or the user is not authorized. Force refresh of the current page.');
@@ -28,8 +31,8 @@ export class AuthenticateXHRBackend extends XHRBackend {
                 localStorage.removeItem('auth_token');              
                 window.location.href = window.location.href + '?' + new Date().getMilliseconds();             
             }
-            return Observable.throw(error);
-        });
+            return observableThrowError(error);
+        }));
         return xhrConnection;
     }
 }

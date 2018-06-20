@@ -1,7 +1,8 @@
+import { Observable } from 'rxjs';
+import {map, debounceTime, distinctUntilChanged, tap, merge, switchMap} from 'rxjs/operators';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
 import { ToastrService } from 'ngx-toastr';
 import { Employee } from '../../employees/models/employee';
 import { UserManagerService } from '../services/user-manager.service';
@@ -91,19 +92,19 @@ export class UserFormComponent implements OnInit {
 
 
   search = (text$: Observable<string>) =>
-    text$
-      .debounceTime(300)
-      .distinctUntilChanged()
-      .do(() => this.searching = true)
-      .switchMap(term =>
-        this.employees.map((results) => {
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => this.searching = true),
+      switchMap(term =>
+        this.employees.pipe(map((results) => {
           return results.filter(v => (v.firstname.toLowerCase().indexOf(term.toLowerCase()) > -1) ||
             (v.surname.toLowerCase().indexOf(term.toLowerCase()) > -1) ||
             (v.email.toLowerCase().indexOf(term.toLowerCase()) > -1) ||
             (v.phone.indexOf(term) > -1)).slice(0, 10);
-        }))
-      .do(() => this.searching = false)
-      .merge(this.hideSearchingWhenUnsubscribed)
+        }))),
+      tap(() => this.searching = false),
+      merge(this.hideSearchingWhenUnsubscribed))
 
   formatter = (x: { fullname: string }) => x.fullname;
 
