@@ -1,7 +1,7 @@
 // const packageJson = require('../../package.json');
 export const environment = {
   production: true,
-  appName: 'Scancom CUA',
+  appName: 'Scancom CCU',
   envName: 'PROD',
   isDebugMode: true,
   Server: 'https://cuaapi.azurewebsites.net/',

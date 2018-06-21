@@ -26,6 +26,33 @@ export class CustomRouterStateSerializer
 }
 
 export class Utils {
+
+    /**
+   * Removes invalid/empty data from DTO
+   *
+   * @static
+   * @param {Array<any>} [records]
+   * @param {number} [size]
+   * @returns
+   * @memberof SelectByChunk
+   */
+  public static chunkBy(records: Array<any>, size: number) {
+    const result = [];
+    if (!records) { return result; }
+    const length = records.length;
+    let cumCount = 0;
+    for (let _i = size; _i < length; _i += size) {
+      cumCount += 4;
+      const item = records.splice(0, _i);
+      result.push(item);
+      if (cumCount > length) {
+        break;
+      }
+      _i -= size;
+    }
+    return result;
+  }
+
   /**
    * Removes invalid/empty data from DTO
    *
@@ -66,7 +93,7 @@ export class Utils {
     const allsuspects = document.getElementsByTagName(targetelement);
     for (let i = allsuspects.length; i >= 0; i--) { // search backwards within nodelist for matching elements to remove
       if (allsuspects[i] && allsuspects[i].getAttribute(targetattr) != null
-      && allsuspects[i].getAttribute(targetattr).indexOf(filename) !== -1) {return true; }
+        && allsuspects[i].getAttribute(targetattr).indexOf(filename) !== -1) { return true; }
     }
     return false;
   }
@@ -80,10 +107,10 @@ export class Utils {
     for (let i = allsuspects.length; i >= 0; i--) {
       // search backwards within nodelist for matching elements to remove
       if (allsuspects[i] && allsuspects[i].getAttribute(targetattr) != null
-      && allsuspects[i].getAttribute(targetattr).indexOf(filename) !== -1) {
-         allsuspects[i].parentNode.removeChild(allsuspects[i]);
-          // remove element by calling parentNode.removeChild()
-        }
+        && allsuspects[i].getAttribute(targetattr).indexOf(filename) !== -1) {
+        allsuspects[i].parentNode.removeChild(allsuspects[i]);
+        // remove element by calling parentNode.removeChild()
+      }
     }
   }
 
@@ -113,7 +140,7 @@ export class Utils {
     const allsuspects = document.getElementsByTagName(targetelement);
     for (let i = allsuspects.length; i >= 0; i--) { // search backwards within nodelist for matching elements to remove
       if (allsuspects[i] && allsuspects[i].getAttribute(targetattr)
-      != null && allsuspects[i].getAttribute(targetattr).indexOf(oldfilename) !== -1) {
+        != null && allsuspects[i].getAttribute(targetattr).indexOf(oldfilename) !== -1) {
         const newelement = this.createjscssfile(newfilename, filetype);
         allsuspects[i].parentNode.replaceChild(newelement, allsuspects[i]);
       }
@@ -121,7 +148,7 @@ export class Utils {
   }
 
   public loadScript(url, crossOrigin = null, integrity = null) {
-    if (this.jscssfileExists(url, 'js')) {return; }
+    if (this.jscssfileExists(url, 'js')) { return; }
     console.log('preparing to load...');
     const node = document.createElement('script');
     node.src = url;
@@ -135,7 +162,7 @@ export class Utils {
 
 
   public loadStyle(url, id = null, integrity = null) {
-    if (this.jscssfileExists(url, 'css')) {return; }
+    if (this.jscssfileExists(url, 'css')) { return; }
     console.log('preparing to load...');
     const node = document.createElement('link');
     node.href = url;

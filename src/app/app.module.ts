@@ -14,7 +14,6 @@ import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
 import { PageNotFoundComponent } from '@app/layouts/public/components/page-notfound.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { UploadModule } from '@progress/kendo-angular-upload';
 import { AppStoreModule } from '@app/core/store/app-store.module';
@@ -22,6 +21,7 @@ import { AppAuthStoreModule } from '@app/modules/auth/app-auth-store.module';
 import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 import { SettingsService } from '@app/modules/site-admin/settings/services/settings.service';
 import { siteServiceFactory } from '@app/factories/site-service.factory';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -47,9 +47,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CoreModule.forRoot(),
     UploadModule,
     ToastrModule.forRoot(), // ToastrModule added
-    ToastContainerModule
+    ToastContainerModule,
+    NgxSpinnerModule
   ],
   providers: [
+    NgxSpinnerService,
     SettingsService,
     {
       provide: APP_INITIALIZER,

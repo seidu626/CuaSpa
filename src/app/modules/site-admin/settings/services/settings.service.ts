@@ -62,7 +62,7 @@ export class SettingsService extends ApiDataService<SettingInfo> {
       }),
       map((payload: GeneralSettings) => {
         return payload;
-      }),);
+      }), );
   }
 
   postGeneralSettings(body: any, options?: RequestOptionsArgs): Observable<Response> {

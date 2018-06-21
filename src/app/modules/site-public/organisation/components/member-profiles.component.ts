@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SettingsService } from '@app/modules/site-admin/settings/services/settings.service';
 import { Profile } from '@app/modules/site-admin/employees/models/profile';
+import { Utils } from '@app/shared/utils';
 
 
 @Component({
@@ -17,11 +18,21 @@ export class MemberProfilesComponent implements OnInit {
   @Input() profiles: Observable<Profile[]>;
   @Input() appName: string;
   @Output() viewEvent = new EventEmitter();
+  private members: any;
+
+
+  constructor(private router: Router, private route: ActivatedRoute,
+    vcr: ViewContainerRef) {
+  }
 
   ngOnInit(): void {
-  }
-  constructor(private router: Router, private route: ActivatedRoute,
-    vcr: ViewContainerRef, private settingsService: SettingsService) {
+    this.profiles.subscribe(
+      (data) => {
+        const results = Utils.chunkBy(data, 4);
+        console.log(results);
+        this.members = results;
+      }
+    );
   }
 
   public applyClearfix(count: number): boolean {
