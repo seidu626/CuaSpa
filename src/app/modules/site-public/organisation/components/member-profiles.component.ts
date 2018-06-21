@@ -18,7 +18,7 @@ export class MemberProfilesComponent implements OnInit {
   @Input() profiles: Observable<Profile[]>;
   @Input() appName: string;
   @Output() viewEvent = new EventEmitter();
-  private members: any;
+  public members: any;
 
 
   constructor(private router: Router, private route: ActivatedRoute,
