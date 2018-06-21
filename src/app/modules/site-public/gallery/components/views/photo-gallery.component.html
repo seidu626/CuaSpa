@@ -36,19 +36,8 @@
     </ng-template>
 
   <div class="portfolio_wrapper padding-top" *ngIf="images; let reqfiles; else loading">
-   
-      <div class="my-app-custom-plain-container-with-desc">
-          <ng-container *ngFor="let img of images">
-            <figure class="my-app-custom-image-with-desc">
-              <img [src]="img.modal.img"
-                   (click)="openImageModalRowDescription(img)"/>
-              <figcaption class="description">{{img.modal.description ? img.modal.description : 'No description available'}}
-              </figcaption>
-            </figure>
-          </ng-container>
-        </div>
-        <ks-modal-gallery [id]="8" [modalImages]="images"
-                          [plainGalleryConfig]="customPlainGalleryRowDescConfig"></ks-modal-gallery>
+      <ks-modal-gallery [id]="5" [modalImages]="images"
+      [plainGalleryConfig]="plainGalleryGrid"></ks-modal-gallery>
 
 		</div><!-- portfolio_wrapper -->
         

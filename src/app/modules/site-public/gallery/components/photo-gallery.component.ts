@@ -23,10 +23,7 @@ export class PhotoGalleryComponent implements OnInit, OnDestroy {
 
   @Input() photos: Observable<MediaItem[]>;
 
-  customPlainGalleryRowDescConfig: PlainGalleryConfig = {
-    strategy: PlainGalleryStrategy.CUSTOM,
-    layout: new AdvancedLayout(-1, true)
-  };
+
 
 
 
@@ -34,6 +31,16 @@ export class PhotoGalleryComponent implements OnInit, OnDestroy {
     private service: SettingsService) {
 
   }
+
+  plainGalleryGrid: PlainGalleryConfig = {
+    strategy: PlainGalleryStrategy.GRID,
+    layout: new GridLayout({ width: '350px', height: '250' }, { length: 10, wrap: false })
+  };
+
+  customPlainGalleryRowDescConfig: PlainGalleryConfig = {
+    strategy: PlainGalleryStrategy.CUSTOM,
+    layout: new AdvancedLayout(-1, true)
+  };
 
   openModalWindow = false;
   imagePointer = 0;
