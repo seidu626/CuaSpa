@@ -4,7 +4,7 @@ import { Effect, Actions } from '@ngrx/effects';
 import { AuthService } from '../../services/auth.service';
 import * as Auth from '../actions/auth.actions';
 import { of, pipe, } from 'rxjs';
-import { map, tap, catchError, exhaustMap, switchMap, filter } from 'rxjs/operators';
+import { map, tap, catchError, exhaustMap, switchMap, filter, finalize } from 'rxjs/operators';
 
 // Object.assign(Actions.prototype, {  map, filter, exhaustMap, switchMap, mergeMap, pipe });
 
@@ -20,10 +20,10 @@ export class AuthEffects {
           .login(auth)
           .pipe(
             map(user => {
-              console.log('logged in');
               return new Auth.LoginSuccess({ user });
             }),
-            catchError(error => of(new Auth.LoginFailure(error)))
+            catchError(error => of(new Auth.LoginFailure(error))),
+           // finalize(() => )
           )
       )
     );

@@ -63,12 +63,12 @@ export class PhotoGalleryComponent implements OnInit, OnDestroy {
           {// // modal
             img: x.path,
             title: x.title,
-            description:  x.description, // no description
+            description:  x.title, // no description
           },
           {// // plain
             img: x.thumbPath,
             title: x.title,
-            description: x.description, // no description
+            description: x.title, // no description
           },
         );
       });

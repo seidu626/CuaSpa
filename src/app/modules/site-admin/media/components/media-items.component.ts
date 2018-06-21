@@ -15,8 +15,8 @@ export class MediaItemsComponent implements OnInit {
 
   public rows$: MediaItem[];
   @ViewChild(DatatableComponent) table: DatatableComponent;
-  loadingIndicator: boolean = true;
-  reorderable: boolean = true;
+  loadingIndicator = true;
+  reorderable = true;
   temp = [];
   columns = [
     { name: 'id' },
@@ -29,12 +29,12 @@ export class MediaItemsComponent implements OnInit {
 
 
   placements: string[] = ['top', 'left', 'right', 'bottom'];
-  popoverTitle: string = 'Delete record?';
-  popoverMessage: string = 'Are you really <b>sure</b> you want to do this?';
-  confirmText: string = 'Yes <i class="glyphicon glyphicon-ok"></i>';
-  cancelText: string = 'No <i class="glyphicon glyphicon-remove"></i>';
-  confirmClicked: boolean = false;
-  cancelClicked: boolean = false;
+  popoverTitle = 'Delete record?';
+  popoverMessage = 'Are you really <b>sure</b> you want to do this?';
+  confirmText = 'Yes <i class="glyphicon glyphicon-ok"></i>';
+  cancelText = 'No <i class="glyphicon glyphicon-remove"></i>';
+  confirmClicked = false;
+  cancelClicked = false;
 
   ngOnInit(): void {
     this.getLists();
@@ -52,12 +52,12 @@ export class MediaItemsComponent implements OnInit {
   onEdit(id: number) {
     this.router.navigate(['/admin/media/addMedia', id], { relativeTo: this.route });
     // Emit edit event
-    //EmitterService.get(this.editId).emit(id);
+    // EmitterService.get(this.editId).emit(id);
   }
 
   onDelete(id: number) {
     this.service.delete(id).subscribe(
-      () => { this.toastr.info("Record successfully deleted.", "Record Deleted"); } //complete
+      () => { this.toastr.info('Record successfully deleted.', 'Record Deleted'); } // complete
     );
     // Todo: error handling
     //

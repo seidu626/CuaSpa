@@ -39,7 +39,7 @@ export class MediaItemService extends ApiDataService<MediaItem> {
         }));
         APP_SETTINGS.contentsliders = sliders;
         return sliders;
-      }),);
+      }));
   }
   getAllMedia(height: number = 0, width: number = 0, thumbHeight: number = 0,
     thumbWidth: number = 0, mediaType: string = ''): Observable<MediaItem[]> {
@@ -58,7 +58,7 @@ export class MediaItemService extends ApiDataService<MediaItem> {
           m.thumbPath = environment.Server + m.thumbPath;
           return m;
         });
-      }),);
+      }));
   }
 
   get(id: number): Observable<MediaItem> {

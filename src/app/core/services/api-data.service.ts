@@ -34,7 +34,7 @@ export abstract class ApiDataService<TEntity> extends ApiService {
       }),
       map((payload: TEntity[]) => {
         return payload;
-      }),);
+      }));
   }
 
   get(id: any): Observable<TEntity> {
@@ -45,12 +45,12 @@ export abstract class ApiDataService<TEntity> extends ApiService {
       }),
       map((payload: TEntity) => {
         return payload;
-      }),);
+      }));
   }
 
   // create
   post(payload: TEntity): Observable<Response> {
-    const observable = super.post(payload, );
+    const observable = super.post(payload);
     return observable.pipe(
       finalize(() => {
         this.getAll().subscribe(

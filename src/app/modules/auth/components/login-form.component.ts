@@ -12,12 +12,12 @@ import { fadeInAnimation } from '@app/shared/animations/fade-in.animation';
 export class LoginFormComponent implements OnInit {
   @Input()
   set pending(isPending: boolean) {
-    this._pending = isPending;
-    if (isPending) {
-      this.form.disable();
-    } else {
-      this.form.enable();
-    }
+    // this._pending = isPending;
+    // if (isPending) {
+    //   this.form.disable();
+    // } else {
+    //   this.form.enable();
+    // }
   }
   _pending: boolean;
 

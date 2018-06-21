@@ -2,7 +2,7 @@
 import {empty as observableEmpty,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { User, Authenticate } from '../models/user';
-import { map, tap, catchError, retry} from 'rxjs/operators';
+import { map, tap, catchError, retry, finalize} from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
@@ -31,6 +31,9 @@ export class AuthService {
           console.log(err);
           this.toastyService.error(err.error['login_failure'][0], 'ERROR!!');
           return observableEmpty();
+        }),
+        finalize(() => {
+          return  new User;
         })
       );
   }

@@ -76,6 +76,9 @@ export class MediaItemFormComponent implements OnInit {
       formModel['fileExtension'] = uploadedFile[0]['extension'];
       formModel['upload'] = null;
     }
+    if (!formModel['published']) {
+      formModel['published'] = 1;
+    }
 
     if (!formModel['displayOrder']) {
       formModel['displayOrder'] = 0;
