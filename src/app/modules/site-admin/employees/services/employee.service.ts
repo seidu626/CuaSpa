@@ -8,6 +8,7 @@ import { LoggerService } from '../../../../core/services/log4ts/logger.service';
 import { Http, RequestOptionsArgs, RequestOptions } from '@angular/http';
 import { LoaderService } from '../../../../core/loader/loader.service';
 import { Employee } from '../models/employee';
+import { environment } from '@env/environment';
 
 
 
@@ -31,7 +32,10 @@ export class EmployeeService extends ApiService {
         return body || {};
       }),
       map((payload: Employee[]) => {
-        return payload;
+        return payload.map(p => {
+          p.picturePath = environment.Server + p.picturePath;
+          return p;
+        });
       }));
   }
 
@@ -42,13 +46,14 @@ export class EmployeeService extends ApiService {
         return body || {};
       }),
       map((payload: Employee) => {
+        payload.picturePath = environment.Server + payload.picturePath;
         return payload;
       }));
   }
 
   // create
   post(payload: FormData): Observable<Response> {
-    const observable = super.post(payload, null);
+    const observable = super.post(payload);
     return observable.pipe(finalize(() => {
       this.getAll().subscribe(
         (result) => { this.employeesObserver.next(result); }

@@ -4,7 +4,8 @@ import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@ang
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { MediaItemService } from '@app/modules/site-admin/media/services/media-item.service';
-import { FileRestrictions, SelectEvent, ClearEvent, RemoveEvent, FileInfo } from '@progress/kendo-angular-upload';
+import { FileRestrictions, SelectEvent, ClearEvent, RemoveEvent,
+   FileInfo, UploadEvent, SuccessEvent } from '@progress/kendo-angular-upload';
 import { environment } from '@env/environment';
 
 
@@ -18,6 +19,7 @@ export class MediaItemFormComponent implements OnInit {
   editMode = false;
   form: FormGroup;
   color = '#ffffff';
+  uploadedFileName: string;
 
 
   public events: string[] = [];
@@ -72,7 +74,7 @@ export class MediaItemFormComponent implements OnInit {
     const uploadedFile = formModel['upload'];
     if (uploadedFile) {
       formModel['size'] = uploadedFile[0]['size'];
-      formModel['seoFilename'] = uploadedFile[0]['name'];
+      formModel['seoFilename'] = this.uploadedFileName; // uploadedFile[0]['name'];
       formModel['fileExtension'] = uploadedFile[0]['extension'];
       formModel['upload'] = null;
     }
@@ -136,6 +138,14 @@ export class MediaItemFormComponent implements OnInit {
     if (this.editMode) {
       this.service.get(this.id)
         .subscribe((data) => {
+          const image = {
+            name: '',
+            src: data.path,
+            uid: '78994'
+          };
+
+          this.imagePreviews.unshift(image);
+
           this.form.setValue({
             title: data.title,
             shortDesc: data.shortDesc,
@@ -160,6 +170,16 @@ export class MediaItemFormComponent implements OnInit {
     this.imagePreviews = [];
   }
 
+  successEventHandler(e: SuccessEvent) {
+    console.log('The ' + e.operation + ' was successful!');
+    console.log(e);
+    this.uploadedFileName = e.response.body['name'];
+  }
+
+  errorEventHandler(e: ErrorEvent) {
+    console.log('An error occurred');
+  }
+
   public completeEventHandler(e: any) {
     this.log(`All files processed`);
     console.log(e);
@@ -174,6 +194,14 @@ export class MediaItemFormComponent implements OnInit {
       this.imagePreviews.splice(index, 1);
     }
   }
+
+  public uploadEventHandler(e: UploadEvent) {
+    console.log(e.files[0].uid);
+    // you can send extra data here
+    e.data = {
+        attachmentType: 'Hello world from angular'
+    };
+}
 
   public selectEventHandler(e: SelectEvent): void {
     const that = this;

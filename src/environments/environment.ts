@@ -13,9 +13,9 @@ export const environment = {
   appName: 'Angular Seed',
   envName: 'DEV',
   isDebugMode: true,
-  Server:  'https://cuaapi.azurewebsites.net/',
+  Server: 'http://localhost:1331/',  // 'https://cuaapi.azurewebsites.net/',
   ApiUrlPrefix: 'api/',
-  baseApiEndpoint: 'https://cuaapi.azurewebsites.net/api/',
+  baseApiEndpoint: 'http://localhost:1331/api/',
   versions: {
     // app: packageJson.version,
     // angular: packageJson.dependencies['@angular/core'],

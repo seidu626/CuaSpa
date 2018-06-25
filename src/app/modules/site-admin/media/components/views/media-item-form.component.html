@@ -66,7 +66,11 @@
                                 (select)="selectEventHandler($event)"
                                 (clear)="clearEventHandler($event)"
                                 (remove)="removeEventHandler($event)"
-                                (complete)="completeEventHandler($event)">
+                                (upload)="uploadEventHandler($event)"
+                                (complete)="completeEventHandler($event)"
+                                (success)="successEventHandler($event)"
+                                (error)="errorEventHandler($event)"
+                                >
                   </kendo-upload>
 
                   <div *ngIf="imagePreviews.length" class="img-preview example-config">

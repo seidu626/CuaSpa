@@ -4,8 +4,14 @@ import { SocialSettings } from '@app/modules/site-admin/settings/models/social-s
 
 export class GeneralSettings {
 
-  constructor(values: Object = {}) {
-    Object.assign(this, values);
+  constructor(values: Object = null) {
+    if (values) {
+      Object.assign(this, values);
+    } else {
+      this.companyInformationSettings = new CompanyInformationSettings;
+      this.contactDataSettings = new ContactDataSettings;
+      this.socialSettings = new SocialSettings;
+    }
   }
 
   companyInformationSettings: CompanyInformationSettings;

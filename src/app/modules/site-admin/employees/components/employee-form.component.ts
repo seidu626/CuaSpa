@@ -17,7 +17,7 @@ import { Division } from '@app/modules/site-admin/organisation/models/division';
 import { DivisionService } from '@app/modules/site-admin/organisation/services/division.service';
 import { SectionService } from '@app/modules/site-admin/organisation/services/section.service';
 import { LevelService } from '@app/modules/site-admin/organisation/services/level.service';
-import { FileRestrictions, SelectEvent, ClearEvent, RemoveEvent, FileInfo } from '@progress/kendo-angular-upload';
+import { FileRestrictions, SelectEvent, ClearEvent, RemoveEvent, FileInfo, SuccessEvent } from '@progress/kendo-angular-upload';
 import { environment } from '@env/environment';
 
 @Component({
@@ -29,6 +29,8 @@ export class EmployeeFormComponent implements OnInit {
   id: number;
   editMode = false;
   empForm: FormGroup;
+  picturePath: string;
+  uploadedFileName = null;
 
   public events: string[] = [];
   public imagePreviews: FileInfo[] = [];
@@ -110,8 +112,9 @@ export class EmployeeFormComponent implements OnInit {
     formData.append('categoryCode', formModel.categoryCode);
     formData.append('physicalAddress', formModel.physicalAddress);
     formData.append('postalAddress', formModel.postalAddress);
-    formData.append('avatar', filename);
-
+    if (this.uploadedFileName) {
+      formData.append('avatar', this.uploadedFileName);
+    }
 
     if (this.editMode) {
       formData.append('id', this.id.toString());
@@ -199,18 +202,18 @@ export class EmployeeFormComponent implements OnInit {
     );
 
     this.empForm = this.fb.group({
-      categoryCode: ['', Validators.required],
-      departmentCode: ['', Validators.required],
-      divisionCode: ['', Validators.required],
-      sectionCode: ['', Validators.required],
-      levelCode: ['', Validators.required],
-      jobRoleCode: ['', Validators.required],
+      categoryCode: '',
+      departmentCode: '',
+      divisionCode: '',
+      sectionCode: '',
+      levelCode: '',
+      jobRoleCode: '',
       username: ['', Validators.required],
       surname: ['', Validators.required],
       firstname: ['', Validators.required],
       phone: ['', Validators.required],
       othernames: '',
-      email: '',
+      email: ['', Validators.required],
       avatar: '',
       physicalAddress: '',
       postalAddress: ''
@@ -220,7 +223,13 @@ export class EmployeeFormComponent implements OnInit {
     if (this.editMode) {
       this.employeesService.get(this.id)
         .subscribe((data: Employee) => {
+          const image = {
+            name: '',
+            src: data.picturePath,
+            uid: '78994'
+          };
 
+          this.imagePreviews.unshift(image);
           this.jobRoleService.dataObserver.subscribe(
             (results) => {
               this.jobRoles = results.filter(v => v.departmentCode === data.departmentCode);
@@ -263,10 +272,22 @@ export class EmployeeFormComponent implements OnInit {
 
 
 
+  // file operation
   public clearEventHandler(e: ClearEvent): void {
     this.log('Clearing the file upload');
     this.imagePreviews = [];
   }
+
+  successEventHandler(e: SuccessEvent) {
+    console.log('The ' + e.operation + ' was successful!');
+    console.log(e);
+    this.uploadedFileName = e.response.body['name'];
+  }
+
+  errorEventHandler(e: ErrorEvent) {
+    console.log('An error occurred');
+  }
+
 
   public completeEventHandler(e: any) {
     this.log(`All files processed`);

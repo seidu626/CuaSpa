@@ -126,7 +126,10 @@
                 <div class="col-md-9">
                   <kendo-upload formControlName="avatar" [multiple]="false" [saveUrl]="uploadSaveUrl" [removeUrl]="uploadRemoveUrl" [restrictions]="uploadRestrictions"
                     (select)="selectEventHandler($event)" (clear)="clearEventHandler($event)" (remove)="removeEventHandler($event)"
-                    (complete)="completeEventHandler($event)">
+                    (complete)="completeEventHandler($event)"                   
+                    (success)="successEventHandler($event)"
+                    (error)="errorEventHandler($event)"
+                    >
                   </kendo-upload>
 
                   <div *ngIf="imagePreviews.length" class="img-preview example-config">
