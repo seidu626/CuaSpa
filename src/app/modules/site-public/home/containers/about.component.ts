@@ -23,7 +23,6 @@ export class AboutComponent implements OnInit {
       .subscribe(
       (params) => {
         let view = params['mode'];
-        console.log(params);
         if (view == "history") {
           this.history = true;
           this.mission = false;

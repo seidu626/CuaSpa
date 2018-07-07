@@ -37,7 +37,6 @@ export class OrganisationStructureComponent implements OnInit {
   init(): void {
 
     const generalSettings = APP_SETTINGS.generalSettings;
-    console.log(generalSettings);
 
     this.socialSettings = generalSettings.socialSettings;
 

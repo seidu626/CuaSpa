@@ -171,8 +171,6 @@ export class MediaItemFormComponent implements OnInit {
   }
 
   successEventHandler(e: SuccessEvent) {
-    console.log('The ' + e.operation + ' was successful!');
-    console.log(e);
     this.uploadedFileName = e.response.body['name'];
   }
 
@@ -182,7 +180,6 @@ export class MediaItemFormComponent implements OnInit {
 
   public completeEventHandler(e: any) {
     this.log(`All files processed`);
-    console.log(e);
   }
 
   public removeEventHandler(e: RemoveEvent): void {

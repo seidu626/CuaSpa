@@ -74,7 +74,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         first.active = 'active';
         results[0] = first;
         this.sliders = results;
-        console.log(this.sliders);
       });
 
   }

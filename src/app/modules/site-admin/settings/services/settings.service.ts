@@ -31,14 +31,11 @@ export class SettingsService extends ApiDataService<SettingInfo> {
 
   // https://github.com/IntertechInc/angular-app-initializer
   getSettings(): Promise<any> {
-    console.log(`getSettings:: before http.get call`);
     // if (!APP_SETTINGS.generalSettings) {return  Promise.resolve(); }
 
     const promise = this.getJSON().toPromise()
       .then(settings => {
-        console.log(`Settings from Json: `, settings);
         APP_SETTINGS.generalSettings = settings;
-        console.log(`APP_SETTINGS: `, APP_SETTINGS);
         return settings;
       });
 
@@ -47,14 +44,11 @@ export class SettingsService extends ApiDataService<SettingInfo> {
 
   // https://github.com/IntertechInc/angular-app-initializer
   getApiSettings(): Promise<any> {
-    console.log(`getSettings:: before http.get call`);
     // if (!APP_SETTINGS.generalSettings) {return  Promise.resolve(); }
 
     const promise = this.getGeneralSettings().toPromise()
       .then(settings => {
-        console.log(`Settings from API: `, settings);
         APP_SETTINGS.generalSettings = settings;
-        console.log(`APP_SETTINGS: `, APP_SETTINGS);
         return settings;
       });
 
