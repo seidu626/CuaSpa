@@ -20,8 +20,33 @@ export class SettingsService extends ApiDataService<SettingInfo> {
   constructor(protected http: Http, protected logger: LoggerService, protected loaderService: LoaderService) {
     super(http, logger, 'settings', loaderService);
   }
+
+  public getJSON(): Observable<GeneralSettings> {
+    //https://gist.github.com/keeguon/2310008
+    return this.http.get("./assets/appsettings.json")
+      .pipe(
+      map((res: any) => res.json())
+      )
+  }
+
   // https://github.com/IntertechInc/angular-app-initializer
   getSettings(): Promise<any> {
+    console.log(`getSettings:: before http.get call`);
+    // if (!APP_SETTINGS.generalSettings) {return  Promise.resolve(); }
+
+    const promise = this.getJSON().toPromise()
+      .then(settings => {
+        console.log(`Settings from Json: `, settings);
+        APP_SETTINGS.generalSettings = settings;
+        console.log(`APP_SETTINGS: `, APP_SETTINGS);
+        return settings;
+      });
+
+    return promise;
+  }
+
+  // https://github.com/IntertechInc/angular-app-initializer
+  getApiSettings(): Promise<any> {
     console.log(`getSettings:: before http.get call`);
     // if (!APP_SETTINGS.generalSettings) {return  Promise.resolve(); }
 

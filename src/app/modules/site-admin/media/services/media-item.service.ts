@@ -35,7 +35,8 @@ export class MediaItemService extends ApiDataService<MediaItem> {
           'title': x.title,
           'description': x.description,
           'image': environment.Server + x.path,
-          'backgroundColor': x.backgroundColor
+          'backgroundColor': x.backgroundColor,
+          'displayOrder': x.displayOrder
         }));
         APP_SETTINGS.contentsliders = sliders;
         return sliders;

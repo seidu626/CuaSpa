@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
       // this.initialize();
        /** spinner ends after 5 seconds */
        this.spinner.hide();
-     }, 3000);
+     }, 500);
   }
 
 }

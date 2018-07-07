@@ -9,6 +9,7 @@ import { NewsComponent } from '@app/modules/site-public/press/containers/news.co
 import { ContactUsComponent } from '@app/modules/site-public/home/components/contact.component';
 import { GalleryComponent } from '@app/modules/site-public/gallery/containers/gallery.component';
 import { FormsComponent } from '@app/modules/site-public/forms/containers/forms.component';
+import { OrganisationStructureComponent } from '@app/modules/site-public/home/components/organisation-structure.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,16 @@ export const routes: Routes = [
         component: HomeComponent,
         data: {
           title: 'Home'
+        }
+      },
+      {
+        path: 'orgstructure',
+        // resolve: {
+        //   contentSliders: ContentSlidersResolver
+        // },
+        component: OrganisationStructureComponent,
+        data: {
+          title: 'Organisationl Structure'
         }
       },
       {

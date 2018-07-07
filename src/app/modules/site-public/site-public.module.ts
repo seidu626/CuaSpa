@@ -47,6 +47,7 @@ import { GalleryComponent } from '@app/modules/site-public/gallery/containers/ga
 import { FormsComponent } from '@app/modules/site-public/forms/containers/forms.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxSpinnerModule , NgxSpinnerService} from 'ngx-spinner';
+import { OrganisationStructureComponent } from '@app/modules/site-public/home/components/organisation-structure.component';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import { NgxSpinnerModule , NgxSpinnerService} from 'ngx-spinner';
     NewsListComponent,
     NewsDetailComponent,
     TimeAgoPipe,
+    OrganisationStructureComponent
   ],
   providers: [
     MediaItemService,

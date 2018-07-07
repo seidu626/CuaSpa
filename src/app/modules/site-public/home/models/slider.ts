@@ -8,4 +8,5 @@ export class Slider {
   public description: string;
   public backgroundColor: string;
   public active: string;
+  public displayOrder: number;
 }

@@ -14,6 +14,8 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { APP_SETTINGS } from '@app/settings/app-settings';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { process } from '@progress/kendo-data-query';
+import { orderBy } from '@progress/kendo-data-query';
 
 
 
@@ -43,7 +45,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {
     // customize default values of carousels used by this component tree
     config.interval = 10000;
-    config.wrap = false;
+    config.wrap = true;
     config.keyboard = false;
   }
 
@@ -55,7 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.initialize();
         /** spinner ends after 5 seconds */
         this.spinner.hide();
-    }, 5000);
+    }, 2000);
   }
 
   ngOnDestroy(): void {
@@ -67,6 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     // let sliders = APP_SETTINGS.contentsliders;
     this.mediaItemSvc.getSliders(400, 1244)
       .subscribe((results) => {
+        results = orderBy(results, [{ field: "displayOrder", dir: "asc" }]);
         const first = results[0];
         first.active = 'active';
         results[0] = first;

@@ -1,0 +1,73 @@
+<section class="post-wrapper-top jt-shadow clearfix">
+    <div class="container">
+      <div class="col-lg-12">
+        <h2>Organisational Structure</h2>
+        <i class="fa fa-ticket"></i> 
+        <ul class="breadcrumb pull-right">
+          <a [routerLink]="['/public/home']"> Home </a>
+          <li> Org-Structure</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- end post-wrapper-top -->
+
+  <section class="white-wrapper">
+      <div class="container">
+          <div class="general-title">
+              <h2>ORGANISATIONAL STRUCTURE</h2>             
+          </div><!-- end general title -->    
+          <div class="contact_form">
+            <img src="/assets/img/organisational-structure.png" />
+      
+          </div><!-- end contact-form -->
+      </div><!-- end container -->
+</section><!-- end map wrapper -->
+
+<section id="one-parallax" class="parallax" style="background-image: url('/assets/img/parallax_05.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+  <div class="overlay">
+          <div class="container">
+              <div class="row padding-top margin-top">
+                  <div class="contact_details">
+                      <div class="col-lg-4 col-sm-4 col-md-6 col-xs-12">
+                          <div class="text-center">
+                              <div class="wow swing">
+                                  <div class="contact-icon">
+                                      <a href="javascript:void(0)" class=""> <i class="fa fa-map-marker fa-3x"></i> </a>
+                                  </div><!-- end dm-icon-effect-1 -->
+                                   <p>{{companySettings.street}}, {{companySettings.city}} {{companySettings.countryName}}<br>
+                                    {{companySettings.address}}</p>
+                              </div><!-- end service-icon -->
+                          </div><!-- end miniboxes -->
+                      </div><!-- end col-lg-4 -->
+                      
+                      <div class="col-lg-4 col-sm-4 col-md-6 col-xs-12">
+                          <div class="text-center">
+                              <div class="wow swing">
+                                  <div class="contact-icon">
+                                      <a href="javascript:void(0)" class=""> <i class="fa fa-phone fa-3x"></i> </a>
+                                  </div><!-- end dm-icon-effect-1 -->
+                                   <p><strong>Phone:</strong> {{contactDataSettings.mobileTelephoneNumber}}<br>
+                                  <strong>Support Phone:</strong> {{contactDataSettings.hotlineTelephoneNumber}}</p>
+                              </div><!-- end service-icon -->
+                          </div><!-- end miniboxes -->
+                      </div><!-- end col-lg-4 -->  
+      
+                      <div class="col-lg-4 col-sm-4 col-md-6 col-xs-12">
+                          <div class="text-center">
+                              <div class="wow swing">
+                                  <div class="contact-icon">
+                                      <a href="javascript:void(0)" class=""> <i class="fa fa-envelope-o fa-3x"></i> </a>
+                                  </div><!-- end dm-icon-effect-1 -->
+                                   <p><strong>Email:</strong> {{contactDataSettings.contactEmailAddress}}<br>
+                                  <strong>Suppport Email:</strong>  {{contactDataSettings.supportEmailAddress}}</p>
+                              </div><!-- end service-icon -->
+                          </div><!-- end miniboxes -->
+                      </div><!-- end col-lg-4 -->                  
+                  </div><!-- end contact_details -->
+              </div><!-- end margin-top --><br><br>
+          </div><!-- end container -->
+      </div><!-- end overlay -->
+  </section><!-- end map wrapper -->
+
+
