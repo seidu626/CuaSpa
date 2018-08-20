@@ -86,10 +86,13 @@ export class OrganisationComponent implements OnInit {
     this.showProfile = false;
     this.showProfileList = true;
     if (memberType) {
-      return this.profiles = this.profileService.getAll(200, 235).pipe(
+      this.profiles = this.profileService.getAll(200, 235).pipe(
         map((stream) => stream.filter(p => p.memberType.toLowerCase() === memberType.toLowerCase())));
+        this.profiles.subscribe((subs) => console.log(subs));
+        return;
     }
-    return this.profiles = this.profileService.getAll(200, 235);
+    this.profiles = this.profileService.getAll(200, 235);
+    return;
   }
 
 }

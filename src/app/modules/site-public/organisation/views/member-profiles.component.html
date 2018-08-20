@@ -28,55 +28,49 @@
         </div>
       </ng-template>
 
-      <div *ngIf="members; let chunkedProfiles; else loading" class="">
-          <ng-template ngFor let-profiles [ngForOf]="chunkedProfiles" let-profilesIndex="index">
-              <ng-template ngFor let-profile [ngForOf]="profiles" let-profileIndex="index" let-cardPosFirst="index === 0 ? 'first' : '' " let-cardPosLast="index === 3 ? 'last' : '' ">
-                  <div (click)="viewEvent.emit({id: profile.id})" class="col-lg-3 col-md-3 col-sm-6 col-xs-12  {{cardPosFirst}}  {{cardPosLast}}">
-                      <ng-template #ngclearfix>
-                        <div class="clearfix"></div>
-                          <hr>
-                          <br>
-                      </ng-template>            
-                     
-                      <div class="team_member">
-                        <div class="entry">
-                          <img class="img-responsive" src="{{profile.picturePath}}" alt="">
-                          <div class="magnifier">
-                            <div class="buttons">
-                              <a class="sf" rel="bookmark" (click)="viewEvent.emit({id: $profile.id})" style="cursor: pointer;">
-                                <span class="fa fa-user-circle-o"></span>
-                              </a>
-                              <a class="sf" rel="bookmark" href="{{profile.email}}">
-                                <span class="fa fa-envelope"></span>
-                              </a>
-                              <a class="sf" rel="bookmark" href="{{profile.facebook}}">
-                                <span class="fa fa-facebook"></span>
-                              </a>
-                              <a class="st" rel="bookmark" href="{{profile.twitter}}">
-                                <span class="fa fa-twitter"></span>
-                              </a>
-                              <a class="sg" rel="bookmark" href="{{profile.linkedin}}">
-                                <span class="fa fa-linkedin"></span>
-                              </a>
-                            </div>
-                          </div>
-                          <!-- end magnifier -->
-                        </div>
-                        <!-- end entry -->
-                        <h3>{{profile.employee}}
-                          <span>|</span>
-                          <small>{{profile.memberType}}</small>
-                        </h3>
-                        <p [innerHTML]="profile.shortDescription"></p>
-                      </div>
-                      <!-- end team_member -->
-                    </div>
-              </ng-template>
-          </ng-template>    
+      <div *ngFor='let profile of profiles | async'>
+        <div (click)="viewEvent.emit({id: profile.id})" class="col-lg-3 col-md-3 col-sm-6 col-xs-12  {{cardPosFirst}}  {{cardPosLast}}">
+          <ng-template #ngclearfix>
+            <div class="clearfix"></div>
+              <hr>
+              <br>
+          </ng-template>            
+         
+          <div class="team_member">
+            <div class="entry">
+              <img class="img-responsive" src="{{profile.picturePath}}" alt="">
+              <div class="magnifier">
+                <div class="buttons">
+                  <a class="sf" rel="bookmark" (click)="viewEvent.emit({id: $profile.id})" style="cursor: pointer;">
+                    <span class="fa fa-user-circle-o"></span>
+                  </a>
+                  <a class="sf" rel="bookmark" href="{{profile.email}}">
+                    <span class="fa fa-envelope"></span>
+                  </a>
+                  <a class="sf" rel="bookmark" href="{{profile.facebook}}">
+                    <span class="fa fa-facebook"></span>
+                  </a>
+                  <a class="st" rel="bookmark" href="{{profile.twitter}}">
+                    <span class="fa fa-twitter"></span>
+                  </a>
+                  <a class="sg" rel="bookmark" href="{{profile.linkedin}}">
+                    <span class="fa fa-linkedin"></span>
+                  </a>
+                </div>
+              </div>
+              <!-- end magnifier -->
+            </div>
+            <!-- end entry -->
+            <h3>{{profile.employee}}
+              <span>|</span>
+              <small>{{profile.memberType}}</small>
+            </h3>
+            <p [innerHTML]="profile.shortDescription"></p>
+          </div>
+          <!-- end team_member -->
+        </div>
+    </div>
 
-      
-        <!-- end col-lg-3 -->
-      </div>
     </div>
     <!-- end row -->
   </div>

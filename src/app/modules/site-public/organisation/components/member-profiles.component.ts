@@ -28,6 +28,7 @@ export class MemberProfilesComponent implements OnInit {
   ngOnInit(): void {
     this.profiles.subscribe(
       (data) => {
+        this.members = null;
         const results = Utils.chunkBy(data, 4);
         console.log(results);
         this.members = results;
