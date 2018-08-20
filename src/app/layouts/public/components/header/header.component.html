@@ -84,23 +84,26 @@
             </li>
             <!-- end standard drop down -->
             <!-- standard drop down -->
-            <!-- <li class="dropdown" dropdown>
+            <li class="dropdown" dropdown>
               <a dropdownToggle href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle nav-link"> Organisation
                 <div class="arrow-up"></div>
-              </a>
+              </a>              
               <ul *dropdownMenu class="dropdown-menu" role="menu">
                 <li class="dropdown-item">
                   <a [routerLink]="['/public/profiles']" [queryParams]="{mode:'directors'}" routerLinkactive="active">Board of Directors</a>
                 </li>
                 <li class="dropdown-item">
-                  <a [routerLink]="['/public/profiles']" [queryParams]="{mode:'management'}" routerLinkactive="active">Top Management</a>
+                  <a [routerLink]="['/public/profiles']" [queryParams]="{mode:'management'}" routerLinkactive="active">Management</a>
                 </li>
                 <li class="dropdown-item">
-                  <a [routerLink]="['/public/profiles']" routerLinkactive="active">Directors</a>
+                  <a [routerLink]="['/public/profiles']" [queryParams]="{mode:'loanscommittee'}" routerLinkactive="active">Loans & Investment Committee</a>
+                </li>
+                <li class="dropdown-item">
+                  <a [routerLink]="['/public/profiles']" [queryParams]="{mode:'auditcommittee'}" routerLinkactive="active">Audit & Supervisory Committee</a>
                 </li>
               </ul>
-              end dropdown-menu
-            </li> -->
+               <!-- end dropdown-menu -->
+            </li> 
             <!-- end standard drop down -->
             <li class="dropdown" dropdown>
               <a dropdownToggle href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle nav-link"> Publications
