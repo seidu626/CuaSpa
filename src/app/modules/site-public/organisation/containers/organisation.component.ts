@@ -23,18 +23,23 @@ export class OrganisationComponent implements OnInit {
   appName = env.appName;
   profile: Observable<Profile>;
   profiles: Observable<Profile[]>;
+  profilesTitle: string;
   totalRecords: number;
   profileIds: number[];
   prev: number;
   next: number;
-
+  memberTypeTitleMap = [
+    {type: 'directors', title: 'Board of Directors'},
+    {type: 'management', title: 'Management'},
+    {type: 'loanscommittee', title: 'Loans & Investment Committee'},
+    {type: 'auditcommittee', title: 'Audit & Supervisory Committee'},
+  ];
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.params = params['mode'];
       const view = this.params;
       this.getProfiles(view);
-
     });
   }
 
@@ -85,6 +90,8 @@ export class OrganisationComponent implements OnInit {
   getProfiles(memberType: string) {
     this.showProfile = false;
     this.showProfileList = true;
+    console.log(this.memberTypeTitleMap);
+    this.profilesTitle = this.memberTypeTitleMap.filter(m => m.type === memberType)[0].title;
     if (memberType) {
       this.profiles = this.profileService.getAll(200, 235).pipe(
         map((stream) => stream.filter(p => p.memberType.toLowerCase() === memberType.toLowerCase())));

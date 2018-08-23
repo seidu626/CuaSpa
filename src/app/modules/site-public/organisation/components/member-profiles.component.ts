@@ -17,6 +17,7 @@ export class MemberProfilesComponent implements OnInit {
 
   @Input() profiles: Observable<Profile[]>;
   @Input() appName: string;
+  @Input() profilesTitle: string;
   @Output() viewEvent = new EventEmitter();
   public members: any;
 

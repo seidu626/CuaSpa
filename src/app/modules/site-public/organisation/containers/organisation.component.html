@@ -1,2 +1,2 @@
-<app-profiles *ngIf="showProfileList" [profiles]="profiles" [appName]="appName"  (viewEvent)="onDetail($event)"></app-profiles>
+<app-profiles *ngIf="showProfileList" [profiles]="profiles" [profilesTitle]='profilesTitle' [appName]="appName"  (viewEvent)="onDetail($event)"></app-profiles>
 <app-profile *ngIf="showProfile" [userProfile]="profile" (nextEvent)="onNextEvent($event)" [totalRecords]="totalRecords" [next]="next" [prev]="prev"></app-profile>

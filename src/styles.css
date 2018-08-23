@@ -22,3 +22,9 @@ html {
   width: 30px !important;
   height: 30px !important;
 }*/
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
